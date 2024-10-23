@@ -17,6 +17,15 @@ type Config struct {
 	Repository postgresql.PostgreSQLConfig
 	DBName     string `env:"DB_NAME"`
 
+	// Доступы к телеграм-боту
+	Telegram struct {
+		Enabled bool   `env:"TG_BOT_ENABLED"`
+		Token   string `env:"TG_BOT_TOKEN"`
+		ChatID  int64  `env:"TG_CHAT_ID"`
+	}
+
+	ChatGPTApiKey string `env:"CHATGPT_APIKEY"`
+
 	ServiceName string `env:"SERVICE_NAME" envDefault:"zodiac"`
 }
 

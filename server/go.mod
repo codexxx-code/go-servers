@@ -8,8 +8,12 @@ require (
 	github.com/Masterminds/squirrel v1.5.4
 	github.com/caarlos0/env/v11 v11.2.2
 	github.com/go-chi/chi/v5 v5.1.0
+	github.com/robfig/cron/v3 v3.0.1
+	github.com/sashabaranov/go-openai v1.32.3
+	github.com/stretchr/testify v1.9.0
 	github.com/swaggo/http-swagger v1.3.4
 	golang.org/x/sync v0.8.0
+	gopkg.in/telebot.v3 v3.3.8
 	pkg v0.0.0-00010101000000-000000000000
 )
 
@@ -45,7 +49,6 @@ require (
 	github.com/prometheus/procfs v0.15.1 // indirect
 	github.com/sethvargo/go-retry v0.3.0 // indirect
 	github.com/stretchr/objx v0.5.2 // indirect
-	github.com/stretchr/testify v1.9.0 // indirect
 	github.com/swaggo/files v0.0.0-20220610200504-28940afbdbfe // indirect
 	github.com/swaggo/swag v1.8.1 // indirect
 	go.uber.org/multierr v1.11.0 // indirect

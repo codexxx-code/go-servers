@@ -7,8 +7,10 @@ import (
 	"os/signal"
 	"syscall"
 
+	"github.com/sashabaranov/go-openai"
 	httpSwagger "github.com/swaggo/http-swagger"
 	"golang.org/x/sync/errgroup"
+
 	"pkg/database/postgresql"
 	"pkg/http/middleware"
 	"pkg/http/router"
@@ -18,12 +20,17 @@ import (
 	"pkg/migrator"
 	"pkg/panicRecover"
 	"pkg/stackTrace"
-
 	"server/internal/config"
 	_ "server/internal/docs"
 	forecastEndpoint "server/internal/services/forecast/endpoint"
 	forecastRepository "server/internal/services/forecast/repository"
 	forecastService "server/internal/services/forecast/service"
+	"server/internal/services/generator/ai/chatGPT"
+	generatorEndpoint "server/internal/services/generator/endpoint"
+	generatorRepository "server/internal/services/generator/repository"
+	generatorService "server/internal/services/generator/service"
+	"server/internal/services/scheduler"
+	tgBotService "server/internal/services/tgBot/service"
 	"server/migrations"
 )
 
@@ -128,14 +135,38 @@ func run() error {
 		return err
 	}
 
+	// Инициализируем телеграм бота
+	log.Info(ctx, "Инициализируем Telegram-бота")
+	tgBotService, err := tgBotService.NewTgBotService(cfg.Telegram.Token, cfg.Telegram.ChatID, cfg.Telegram.Enabled)
+	if err != nil {
+		return err
+	}
+	if cfg.Telegram.Enabled {
+		defer tgBotService.Bot.Close()
+	}
+
+	// Инициализируем клиента ChatGPT
+	log.Info(ctx, "Инициализируем OpenAI ChatGPT")
+	openai := openai.NewClient(cfg.ChatGPTApiKey)
+	chatGPTService := chatGPT.NewChatGPTService(openai)
+
 	// Регистрируем репозитории
+	generatorRepository := generatorRepository.NewGeneratorRepository(postrgreSQL)
 	forecastRepository := forecastRepository.NewForecastRepository(postrgreSQL)
 
 	// Регистрируем сервисы
 	forecastService := forecastService.NewForecastService(forecastRepository)
+	generatorService := generatorService.NewGeneratorService(chatGPTService, generatorRepository, forecastService, tgBotService)
+	scheduler := scheduler.NewScheduler(generatorService)
+
+	log.Info(ctx, "Запускаем планировщик")
+	if err := scheduler.Start(); err != nil {
+		return err
+	}
 
 	r := router.NewRouter()
 	forecastEndpoint.MountForecastEndpoints(r, forecastService)
+	generatorEndpoint.MountGeneratorEndpoints(r, generatorService)
 	r.Mount("/swagger", httpSwagger.WrapHandler)
 
 	server, err := server.GetDefaultServer(cfg.HTTP, r)

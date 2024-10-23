@@ -11,6 +11,7 @@ var _ ForecastRepository = new(forecastRepository.ForecastRepository)
 
 type ForecastRepository interface {
 	GetForecasts(context.Context, model.GetForecastsReq) ([]model.Forecast, error)
+	CreateForecast(context.Context, model.CreateForecastReq) (uint32, error)
 }
 
 type ForecastService struct {

@@ -29,8 +29,6 @@ func NewMigrator(conn *sql.DB, config MigratorConfig) Migrator {
 
 	goose.SetBaseFS(config.EmbedMigrations)
 
-	goose.WithAllowMissing()
-
 	goose.SetLogger(newMigratorLogger())
 
 	return migrator{
@@ -40,7 +38,7 @@ func NewMigrator(conn *sql.DB, config MigratorConfig) Migrator {
 }
 
 func (mg migrator) Up(ctx context.Context) error {
-	if err := goose.UpContext(ctx, mg.conn.DB.DB, mg.cfg.Dir); err != nil {
+	if err := goose.UpContext(ctx, mg.conn.DB.DB, mg.cfg.Dir, goose.WithAllowMissing()); err != nil {
 		return errors.InternalServer.Wrap(err)
 	}
 
