@@ -1,7 +1,7 @@
 package config
 
 import (
-	env "github.com/caarlos0/env/v11"
+	"github.com/caarlos0/env/v11"
 
 	"pkg/database/postgresql"
 	"pkg/errors"
@@ -15,9 +15,9 @@ type Config struct {
 
 	// Данные базы данных
 	Repository postgresql.PostgreSQLConfig
-	DBName     string `env:"DB_NAME" envDefault:"coin"`
+	DBName     string `env:"DB_NAME"`
 
-	ServiceName string `env:"SERVICE_NAME" envDefault:"coin"`
+	ServiceName string `env:"SERVICE_NAME" envDefault:"zodiac"`
 }
 
 // GetConfig возвращает конфигурацию из .env файла

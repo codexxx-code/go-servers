@@ -9,9 +9,9 @@ import (
 )
 
 type PostgreSQLConfig struct {
-	Host     string `env:"DB_HOST" envDefault:"127.0.0.1:5433"`
-	User     string `env:"SERVER_DB_USER" envDefault:"user"`
-	Password string `env:"SERVER_DB_PASSWORD" envDefault:"secret"`
+	Host     string `env:"PGSQL_HOST"`
+	User     string `env:"PGSQL_USER"`
+	Password string `env:"PGSQL_PASSWORD"`
 }
 
 func (c *PostgreSQLConfig) GetURL(databaseName string) string {

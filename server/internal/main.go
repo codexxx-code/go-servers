@@ -9,7 +9,6 @@ import (
 
 	httpSwagger "github.com/swaggo/http-swagger"
 	"golang.org/x/sync/errgroup"
-
 	"pkg/database/postgresql"
 	"pkg/http/middleware"
 	"pkg/http/router"
@@ -19,15 +18,16 @@ import (
 	"pkg/migrator"
 	"pkg/panicRecover"
 	"pkg/stackTrace"
+
 	"server/internal/config"
 	_ "server/internal/docs"
-	zodiacEndpoint "server/internal/services/zodiac/endpoint"
-	zodiacRepository "server/internal/services/zodiac/repository"
-	zodiacService "server/internal/services/zodiac/service"
+	forecastEndpoint "server/internal/services/forecast/endpoint"
+	forecastRepository "server/internal/services/forecast/repository"
+	forecastService "server/internal/services/forecast/service"
 	"server/migrations"
 )
 
-// @title Zodiac Server Documentation
+// @title Forecast Server Documentation
 // @version @{version} (build @{build})
 // @description API Documentation for Coin
 // @contact.name Ilia Ivanov
@@ -129,13 +129,13 @@ func run() error {
 	}
 
 	// Регистрируем репозитории
-	zodiacRepository := zodiacRepository.NewZodiacRepository(postrgreSQL)
+	forecastRepository := forecastRepository.NewForecastRepository(postrgreSQL)
 
 	// Регистрируем сервисы
-	zodiacService := zodiacService.ZodiacService(zodiacRepository)
+	forecastService := forecastService.NewForecastService(forecastRepository)
 
 	r := router.NewRouter()
-	zodiacEndpoint.MountZodiacEndpoints(r, zodiacService)
+	forecastEndpoint.MountForecastEndpoints(r, forecastService)
 	r.Mount("/swagger", httpSwagger.WrapHandler)
 
 	server, err := server.GetDefaultServer(cfg.HTTP, r)
