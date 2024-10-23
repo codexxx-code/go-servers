@@ -131,8 +131,8 @@ jobs:
 
         # Подтягиваем образ из Container registry
       - name: Pull docker image
-        run: ssh ${{ secrets.USER }}@${{ secrets.HOST }} -p ${{ secrets.PORT }} "cd /opt/coin && docker compose pull coin-${{ inputs.service_name }}${{ inputs.test_suffix }}"
+        run: ssh ${{ secrets.USER }}@${{ secrets.HOST }} -p ${{ secrets.PORT }} "cd /opt/coin && docker compose pull codex-${{ inputs.service_name }}${{ inputs.test_suffix }}"
 
         # Перезапускаем сервис
       - name: Restart service
-        run: ssh ${{ secrets.USER }}@${{ secrets.HOST }} -p ${{ secrets.PORT }} "cd /opt/coin && if docker inspect coin-${{ inputs.service_name }}${{ inputs.test_suffix }} >/dev/null 2>&1; then docker compose stop coin-${{ inputs.service_name }}${{ inputs.test_suffix }} && docker rm coin-${{ inputs.service_name }}${{ inputs.test_suffix }}; fi && docker compose up coin-${{ inputs.service_name }}${{ inputs.test_suffix }} -d"
+        run: ssh ${{ secrets.USER }}@${{ secrets.HOST }} -p ${{ secrets.PORT }} "cd /opt/coin && if docker inspect codex-${{ inputs.service_name }}${{ inputs.test_suffix }} >/dev/null 2>&1; then docker compose stop codex-${{ inputs.service_name }}${{ inputs.test_suffix }} && docker rm codex-${{ inputs.service_name }}${{ inputs.test_suffix }}; fi && docker compose up codex-${{ inputs.service_name }}${{ inputs.test_suffix }} -d"
