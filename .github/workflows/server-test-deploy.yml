@@ -13,7 +13,7 @@ jobs:
     uses: ./.github/workflows/reusable-deploy.yml
     with:
       service_port: 8075
-      service_name: server
+      service_name: zodiac
       test_suffix: -test
       command_args: -log-format=json -env-mode=test
     secrets: inherit
