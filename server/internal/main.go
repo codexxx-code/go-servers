@@ -157,7 +157,7 @@ func run() error {
 	// Регистрируем сервисы
 	forecastService := forecastService.NewForecastService(forecastRepository)
 	generatorService := generatorService.NewGeneratorService(chatGPTService, generatorRepository, forecastService, tgBotService)
-	scheduler := scheduler.NewScheduler(generatorService)
+	scheduler := scheduler.NewScheduler(generatorService, cfg.GenerationEnabled)
 
 	log.Info(ctx, "Запускаем планировщик")
 	if err := scheduler.Start(); err != nil {
