@@ -5,11 +5,12 @@ import (
 	"net/http"
 
 	"pkg/http/decoder"
+	"pkg/validator"
 	"server/internal/services/generator/model"
 )
 
 // @Summary Генерация прогноза на один день для одного знака зодиака
-// @Tags forecast
+// @Tags generator
 // @Param Query query model.GenerateDailyZodiacForecastReq false "model.GenerateDailyZodiacForecastReq"
 // @Produce json
 // @Success 200
@@ -21,6 +22,11 @@ func (e *endpoint) generateDailyZodiacForecast(ctx context.Context, r *http.Requ
 
 	// Декодируем запрос
 	if err := decoder.Decoder(ctx, r, &req, decoder.DecodeSchema); err != nil {
+		return nil, err
+	}
+
+	// Валидируем запрос
+	if err := validator.Validate(req); err != nil {
 		return nil, err
 	}
 

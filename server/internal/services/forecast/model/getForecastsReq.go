@@ -6,6 +6,6 @@ import (
 )
 
 type GetForecastsReq struct {
-	Dates   []datetime.Date `query:"dates"`
-	Zodiacs []zodiac.Zodiac `query:"zodiacs"`
+	Dates   []datetime.Date
+	Zodiacs []zodiac.Zodiac
 }

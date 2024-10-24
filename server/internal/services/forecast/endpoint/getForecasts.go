@@ -5,8 +5,9 @@ import (
 	"net/http"
 
 	"pkg/http/decoder"
+	"pkg/validator"
 
-	"server/internal/services/forecast/model"
+	"server/internal/services/forecast/endpoint/model"
 )
 
 // @Summary Получение прогнозов по знакам зодиака
@@ -25,6 +26,16 @@ func (e *endpoint) getForecasts(ctx context.Context, r *http.Request) (any, erro
 		return nil, err
 	}
 
+	// Валидируем запрос
+	if err := validator.Validate(req); err != nil {
+		return nil, err
+	}
+
+	businessModel, err := req.ConvertToBusinessModel()
+	if err != nil {
+		return nil, err
+	}
+
 	// Вызываем метод сервиса
-	return e.service.GetForecasts(ctx, req)
+	return e.service.GetForecasts(ctx, businessModel)
 }

@@ -4,9 +4,11 @@ import (
 	"context"
 	"encoding/json"
 	"net/http"
+	"reflect"
 
 	"github.com/gorilla/schema"
 
+	"pkg/datetime"
 	"pkg/errors"
 	"pkg/reflectUtils"
 )
@@ -34,7 +36,9 @@ func Decoder(
 	for _, decodeSchema := range decodeSchemas {
 		switch decodeSchema {
 		case DecodeSchema:
-			err = schema.NewDecoder().Decode(dest, r.URL.Query())
+			decoder := schema.NewDecoder()
+			decoder.RegisterConverter(datetime.Date{}, dateConverter) //nolint:exhaustruct
+			err = decoder.Decode(dest, r.URL.Query())
 		case DecodeJSON:
 			err = json.NewDecoder(r.Body).Decode(dest)
 		default:
@@ -49,4 +53,13 @@ func Decoder(
 	}
 
 	return nil
+}
+
+var dateConverter = func(val string) reflect.Value {
+
+	date, err := datetime.ParseDate(val)
+	if err != nil {
+		return reflect.Value{}
+	}
+	return reflect.ValueOf(date)
 }

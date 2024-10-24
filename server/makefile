@@ -1,5 +1,5 @@
 swagger:
-	swag init -o app/docs -d internal --parseDependency --parseInternal
+	swag init -o internal/docs -d internal --parseDependency --parseInternal
 
 check-swagger:
 	swag init -o tmp -d internal --parseDependency --parseInternal

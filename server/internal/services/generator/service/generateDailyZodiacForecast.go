@@ -10,6 +10,7 @@ import (
 	forecastModel "server/internal/services/forecast/model"
 	generatorModel "server/internal/services/generator/model"
 	tgBotModel "server/internal/services/tgBot/model"
+	tgBotService "server/internal/services/tgBot/service"
 )
 
 const (
@@ -39,7 +40,7 @@ func (s *GeneratorService) GenerateDailyZodiacForecast(ctx context.Context, req 
 		}),
 	)
 	if err != nil {
-		tgMessage.Message += fmt.Sprintf("Не смогли получить промпт из базы данных\n\n%v", err.Error())
+		tgMessage.Message += fmt.Sprintf("Не смогли получить промпт из базы данных\n\n%v", tgBotService.Replacer.Replace(err.Error()))
 		return err
 	}
 
@@ -55,7 +56,7 @@ func (s *GeneratorService) GenerateDailyZodiacForecast(ctx context.Context, req 
 		Prompt: prompt,
 	})
 	if err != nil {
-		tgMessage.Message += fmt.Sprintf("Не смогли сгенерировать прогноз\n\n%v", err.Error())
+		tgMessage.Message += fmt.Sprintf("Не смогли сгенерировать прогноз\n\n%v", tgBotService.Replacer.Replace(err.Error()))
 		return err
 	}
 
@@ -65,11 +66,11 @@ func (s *GeneratorService) GenerateDailyZodiacForecast(ctx context.Context, req 
 		Zodiac: req.Zodiac,
 		Text:   res.Text,
 	}); err != nil {
-		tgMessage.Message += fmt.Sprintf("Не смогли сохранить прогноз в базу данных\n\n%v", err.Error())
+		tgMessage.Message += fmt.Sprintf("Не смогли сохранить прогноз в базу данных\n\n%v", tgBotService.Replacer.Replace(err.Error()))
 		return err
 	}
 
-	tgMessage.Message = fmt.Sprintf(generatedForecastMessageTemplate, req.Zodiac.ToRussian(), req.Date, res.Text)
+	tgMessage.Message = fmt.Sprintf(generatedForecastMessageTemplate, req.Zodiac.ToRussian(), req.Date, tgBotService.Replacer.Replace(res.Text))
 
 	return nil
 }

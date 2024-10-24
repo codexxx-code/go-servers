@@ -23,6 +23,14 @@ func Now() Date {
 	return Date{time.Date(date.Year(), date.Month(), date.Day(), 0, 0, 0, 0, time.UTC)}
 }
 
+func ParseDate(s string) (Date, error) {
+	t, err := time.Parse(DateFormat, s)
+	if err != nil {
+		return Date{}, err
+	}
+	return Date{t}, nil
+}
+
 func (d *Date) UnmarshalJSON(b []byte) (err error) {
 
 	s := strings.Trim(string(b), "\"") // remove quotes
