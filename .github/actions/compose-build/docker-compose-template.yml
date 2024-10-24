@@ -1,7 +1,7 @@
 version: "1.0"
 
 services:
-  coin-@{project_name}@{test_suffix}:
+  codex-@{project_name}@{test_suffix}:
     image: @{image_name}
     container_name: codex-@{project_name}@{test_suffix}
     restart: always
@@ -10,5 +10,5 @@ services:
       - .././certs:/@{project_name}@{test_suffix}/certs
     ports:
       - 127.0.0.1:@{service_port}:@{service_port}
-    env_file: ../.env_codex@{test_suffix}
+    env_file: ../.env@{test_suffix}
     @{network_mode}

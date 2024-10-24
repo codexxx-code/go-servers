@@ -12,7 +12,7 @@ jobs:
   general-deploy-pipeline:
     uses: ./.github/workflows/reusable-deploy.yml
     with:
-      service_port: 8075
+      service_port: 8081
       service_name: server
       test_suffix: -test
       command_args: -log-format=json -env-mode=test

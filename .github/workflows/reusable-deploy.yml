@@ -123,7 +123,7 @@ jobs:
 
         # Копируем docker-compose.yml на сервер
       - name: Copy docker-compose.yml to server
-        run: scp -P ${{ secrets.PORT }} -p docker-compose.yml  ${{ secrets.USER }}@${{ secrets.HOST }}:/opt/coin/${{ inputs.service_name }}${{ inputs.test_suffix }}/docker-compose.yml
+        run: scp -P ${{ secrets.PORT }} -p docker-compose.yml  ${{ secrets.USER }}@${{ secrets.HOST }}:/opt/codex/${{ inputs.service_name }}${{ inputs.test_suffix }}/docker-compose.yml
 
         # Логинимся в Container registry на сервере
       - name: Login to the Container registry on server
@@ -131,8 +131,8 @@ jobs:
 
         # Подтягиваем образ из Container registry
       - name: Pull docker image
-        run: ssh ${{ secrets.USER }}@${{ secrets.HOST }} -p ${{ secrets.PORT }} "cd /opt/coin && docker compose pull codex-${{ inputs.service_name }}${{ inputs.test_suffix }}"
+        run: ssh ${{ secrets.USER }}@${{ secrets.HOST }} -p ${{ secrets.PORT }} "cd /opt/codex && docker compose pull codex-${{ inputs.service_name }}${{ inputs.test_suffix }}"
 
         # Перезапускаем сервис
       - name: Restart service
-        run: ssh ${{ secrets.USER }}@${{ secrets.HOST }} -p ${{ secrets.PORT }} "cd /opt/coin && if docker inspect codex-${{ inputs.service_name }}${{ inputs.test_suffix }} >/dev/null 2>&1; then docker compose stop codex-${{ inputs.service_name }}${{ inputs.test_suffix }} && docker rm codex-${{ inputs.service_name }}${{ inputs.test_suffix }}; fi && docker compose up codex-${{ inputs.service_name }}${{ inputs.test_suffix }} -d"
+        run: ssh ${{ secrets.USER }}@${{ secrets.HOST }} -p ${{ secrets.PORT }} "cd /opt/codex && if docker inspect codex-${{ inputs.service_name }}${{ inputs.test_suffix }} >/dev/null 2>&1; then docker compose stop codex-${{ inputs.service_name }}${{ inputs.test_suffix }} && docker rm codex-${{ inputs.service_name }}${{ inputs.test_suffix }}; fi && docker compose up codex-${{ inputs.service_name }}${{ inputs.test_suffix }} -d"
