@@ -70,7 +70,7 @@ func (s *GeneratorService) GenerateDailyZodiacForecast(ctx context.Context, req 
 		return err
 	}
 
-	tgMessage.Message = fmt.Sprintf(generatedForecastMessageTemplate, req.Zodiac.ToRussian(), req.Date, tgBotService.Replacer.Replace(res.Text))
+	tgMessage.Message = fmt.Sprintf(generatedForecastMessageTemplate, req.Zodiac.ToRussian(), tgBotService.Replacer.Replace(req.Date.String()), tgBotService.Replacer.Replace(res.Text))
 
 	return nil
 }
