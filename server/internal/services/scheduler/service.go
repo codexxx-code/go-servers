@@ -9,8 +9,9 @@ import (
 )
 
 type Scheduler struct {
-	cron             *cron.Cron
-	generatorService GeneratorService
+	cron              *cron.Cron
+	generatorService  GeneratorService
+	generationEnabled bool
 }
 
 type GeneratorService interface {
@@ -19,9 +20,11 @@ type GeneratorService interface {
 
 func NewScheduler(
 	generatorService GeneratorService,
+	generationEnabled bool,
 ) *Scheduler {
 	return &Scheduler{
-		generatorService: generatorService,
-		cron:             cron.New(),
+		generatorService:  generatorService,
+		cron:              cron.New(),
+		generationEnabled: generationEnabled,
 	}
 }

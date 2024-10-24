@@ -26,6 +26,8 @@ type Config struct {
 
 	ChatGPTApiKey string `env:"CHATGPT_APIKEY"`
 
+	GenerationEnabled bool `env:"GENERATION_ENABLED"`
+
 	ServiceName string `env:"SERVICE_NAME" envDefault:"zodiac"`
 }
 
