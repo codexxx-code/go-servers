@@ -194,6 +194,7 @@ func run() error {
 
 	// Ждем завершения контекста или ошибок в горутинах
 	return eg.Wait()
+
 }
 
 func initSingletons(cfg config.Config) error {
