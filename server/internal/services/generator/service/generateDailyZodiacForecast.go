@@ -9,6 +9,7 @@ import (
 	"pkg/slices"
 	forecastModel "server/internal/services/forecast/model"
 	generatorModel "server/internal/services/generator/model"
+	promptModel "server/internal/services/prompt/model"
 	tgBotModel "server/internal/services/tgBot/model"
 	tgBotService "server/internal/services/tgBot/service"
 )
@@ -35,8 +36,8 @@ func (s *GeneratorService) GenerateDailyZodiacForecast(ctx context.Context, req 
 
 	// Получаем промпт
 	promptRes, err := slices.FirstWithError(
-		s.generatorRepository.GetPrompts(ctx, generatorModel.GetPromptsReq{
-			Case: zodiacForecast,
+		s.promptService.GetPrompts(ctx, promptModel.GetPromptsReq{ //nolint:exhaustruct
+			Cases: []string{zodiacForecast},
 		}),
 	)
 	if err != nil {

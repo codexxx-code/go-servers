@@ -8,11 +8,14 @@ import (
 
 	"pkg/http/chain"
 	generatorModel "server/internal/services/generator/model"
+	generatorService "server/internal/services/generator/service"
 )
 
 type endpoint struct {
 	service GeneratorService
 }
+
+var _ GeneratorService = new(generatorService.GeneratorService)
 
 type GeneratorService interface {
 	GenerateDailyZodiacForecast(ctx context.Context, req generatorModel.GenerateDailyZodiacForecastReq) error
