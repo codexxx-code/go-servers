@@ -27,8 +27,10 @@ import (
 	forecastService "server/internal/services/forecast/service"
 	"server/internal/services/generator/ai/chatGPT"
 	generatorEndpoint "server/internal/services/generator/endpoint"
-	generatorRepository "server/internal/services/generator/repository"
 	generatorService "server/internal/services/generator/service"
+	promptEndpoint "server/internal/services/prompt/endpoint"
+	promptRepository "server/internal/services/prompt/repository"
+	promptService "server/internal/services/prompt/service"
 	"server/internal/services/scheduler"
 	tgBotService "server/internal/services/tgBot/service"
 	"server/migrations"
@@ -151,12 +153,13 @@ func run() error {
 	chatGPTService := chatGPT.NewChatGPTService(openai)
 
 	// Регистрируем репозитории
-	generatorRepository := generatorRepository.NewGeneratorRepository(postrgreSQL)
+	promptRepository := promptRepository.NewPromptRepository(postrgreSQL)
 	forecastRepository := forecastRepository.NewForecastRepository(postrgreSQL)
 
 	// Регистрируем сервисы
+	promptService := promptService.NewPromptService(promptRepository)
 	forecastService := forecastService.NewForecastService(forecastRepository)
-	generatorService := generatorService.NewGeneratorService(chatGPTService, generatorRepository, forecastService, tgBotService)
+	generatorService := generatorService.NewGeneratorService(chatGPTService, promptService, forecastService, tgBotService)
 	scheduler := scheduler.NewScheduler(generatorService, cfg.GenerationEnabled)
 
 	log.Info(ctx, "Запускаем планировщик")
@@ -167,6 +170,7 @@ func run() error {
 	r := router.NewRouter()
 	forecastEndpoint.MountForecastEndpoints(r, forecastService)
 	generatorEndpoint.MountGeneratorEndpoints(r, generatorService)
+	promptEndpoint.MountPromptEndpoints(r, promptService)
 	r.Mount("/swagger", httpSwagger.WrapHandler)
 
 	server, err := server.GetDefaultServer(cfg.HTTP, r)

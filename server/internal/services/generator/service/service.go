@@ -5,14 +5,15 @@ import (
 
 	forecastModel "server/internal/services/forecast/model"
 	generatorModel "server/internal/services/generator/model"
+	promptModel "server/internal/services/prompt/model"
 	tgBotModel "server/internal/services/tgBot/model"
 )
 
 type GeneratorService struct {
-	generatorRepository GeneratorRepository
-	neuralNetwork       NeuralNetwork
-	forecastService     ForecastService
-	tgBotService        TgBotService
+	promptService   PromptService
+	neuralNetwork   NeuralNetwork
+	forecastService ForecastService
+	tgBotService    TgBotService
 }
 
 type TgBotService interface {
@@ -27,20 +28,20 @@ type NeuralNetwork interface {
 	Generate(ctx context.Context, req generatorModel.GenerateReq) (generatorModel.GenerateRes, error)
 }
 
-type GeneratorRepository interface {
-	GetPrompts(ctx context.Context, req generatorModel.GetPromptsReq) ([]generatorModel.Prompt, error)
+type PromptService interface {
+	GetPrompts(ctx context.Context, req promptModel.GetPromptsReq) ([]promptModel.Prompt, error)
 }
 
 func NewGeneratorService(
 	neuralNetwork NeuralNetwork,
-	generatorRepository GeneratorRepository,
+	promptService PromptService,
 	forecastService ForecastService,
 	tgBotService TgBotService,
 ) *GeneratorService {
 	return &GeneratorService{
-		neuralNetwork:       neuralNetwork,
-		generatorRepository: generatorRepository,
-		forecastService:     forecastService,
-		tgBotService:        tgBotService,
+		neuralNetwork:   neuralNetwork,
+		promptService:   promptService,
+		forecastService: forecastService,
+		tgBotService:    tgBotService,
 	}
 }

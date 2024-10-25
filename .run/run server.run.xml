@@ -1,10 +1,18 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="run server" type="GoApplicationRunConfiguration" factoryName="Go Application">
-    <module name="zodiac-generator" />
+    <module name="zodiac" />
     <working_directory value="$PROJECT_DIR$/server" />
     <parameters value="-log-format=text -env-mode=local" />
+    <envs>
+      <env name="DB_NAME" value="zodiac" />
+      <env name="LISTEN_HTTP" value="localhost:8080" />
+      <env name="PGSQL_HOST" value="localhost:5433" />
+      <env name="PGSQL_PASSWORD" value="password" />
+      <env name="PGSQL_USER" value="user" />
+      <env name="SERVICE_NAME" value="zodiac" />
+    </envs>
     <EXTENSION ID="net.ashald.envfile">
-      <option name="IS_ENABLED" value="false" />
+      <option name="IS_ENABLED" value="true" />
       <option name="IS_SUBST" value="false" />
       <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
       <option name="IS_IGNORE_MISSING_FILES" value="false" />
@@ -13,6 +21,7 @@
         <ENTRY IS_ENABLED="true" PARSER="runconfig" IS_EXECUTABLE="false" />
         <ENTRY IS_ENABLED="false" PARSER="env" IS_EXECUTABLE="false" PATH="./server/.env" />
         <ENTRY IS_ENABLED="false" PARSER="env" IS_EXECUTABLE="false" PATH="server/.env" />
+        <ENTRY IS_ENABLED="true" PARSER="env" IS_EXECUTABLE="false" PATH=".env" />
       </ENTRIES>
     </EXTENSION>
     <kind value="PACKAGE" />
