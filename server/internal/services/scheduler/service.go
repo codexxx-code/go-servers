@@ -6,6 +6,7 @@ import (
 	"github.com/robfig/cron/v3"
 
 	generatorModel "server/internal/services/generator/model"
+	generatorService "server/internal/services/generator/service"
 )
 
 type Scheduler struct {
@@ -13,6 +14,8 @@ type Scheduler struct {
 	generatorService  GeneratorService
 	generationEnabled bool
 }
+
+var _ GeneratorService = new(generatorService.GeneratorService)
 
 type GeneratorService interface {
 	GenerateDailyZodiacForecast(ctx context.Context, req generatorModel.GenerateDailyZodiacForecastReq) error
