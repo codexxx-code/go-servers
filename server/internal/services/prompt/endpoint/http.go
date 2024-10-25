@@ -8,14 +8,20 @@ import (
 
 	"pkg/http/chain"
 	promptModel "server/internal/services/prompt/model"
+	promptService "server/internal/services/prompt/service"
 )
 
 type endpoint struct {
 	service PromptService
 }
 
+var _ PromptService = new(promptService.PromptService)
+
 type PromptService interface {
 	GetPrompts(ctx context.Context, req promptModel.GetPromptsReq) ([]promptModel.Prompt, error)
+	UpdatePrompt(ctx context.Context, req promptModel.UpdatePromptReq) error
+	DeletePrompt(ctx context.Context, req promptModel.DeletePromptReq) error
+	CreatePrompt(ctx context.Context, req promptModel.CreatePromptReq) (promptModel.CreatePromptRes, error)
 }
 
 // MountPromptEndpoints mounts prompt endpoints to the router
@@ -30,7 +36,10 @@ func newPromptEndpoint(service PromptService) http.Handler {
 	}
 
 	r := chi.NewRouter()
-	r.Method(http.MethodGet, "/", chain.NewChain(e.getPrompts)) // GET /prompt
+	r.Method(http.MethodGet, "/", chain.NewChain(e.getPrompts))      // GET /prompt
+	r.Method(http.MethodPatch, "/", chain.NewChain(e.updatePrompt))  // PATCH /prompt
+	r.Method(http.MethodDelete, "/", chain.NewChain(e.deletePrompt)) // DELETE /prompt
+	r.Method(http.MethodPost, "/", chain.NewChain(e.createPrompt))   // POST /prompt
 
 	return r
 }

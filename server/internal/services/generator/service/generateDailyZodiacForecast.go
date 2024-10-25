@@ -36,7 +36,7 @@ func (s *GeneratorService) GenerateDailyZodiacForecast(ctx context.Context, req 
 
 	// Получаем промпт
 	promptRes, err := slices.FirstWithError(
-		s.promptService.GetPrompts(ctx, promptModel.GetPromptsReq{
+		s.promptService.GetPrompts(ctx, promptModel.GetPromptsReq{ //nolint:exhaustruct
 			Cases: []string{zodiacForecast},
 		}),
 	)

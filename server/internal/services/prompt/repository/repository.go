@@ -1,6 +1,8 @@
 package repository
 
-import "pkg/sql"
+import (
+	"pkg/sql"
+)
 
 type PromptRepository struct {
 	db sql.SQL
