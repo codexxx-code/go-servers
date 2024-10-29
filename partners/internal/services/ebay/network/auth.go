@@ -54,6 +54,7 @@ func (s *EbayNetwork) Auth(ctx context.Context, req model.AuthReq) (res model.Au
 	if err != nil {
 		return res, errors.InternalServer.Wrap(err)
 	}
+	defer resp.Body.Close()
 
 	// Проверяем код ответа
 	if resp.StatusCode != http.StatusOK {

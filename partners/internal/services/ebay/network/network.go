@@ -24,8 +24,13 @@ func NewEbayNetwork(config config.EbayConfig) *EbayNetwork {
 
 	ebayNetwork := &EbayNetwork{
 		authManager: nil,
-		httpClient:  http.Client{},
-		isSandbox:   config.IsSandbox,
+		httpClient: http.Client{
+			Transport:     nil,
+			CheckRedirect: nil,
+			Jar:           nil,
+			Timeout:       0,
+		},
+		isSandbox: config.IsSandbox,
 	}
 
 	// Делаем запрос на авторизацию

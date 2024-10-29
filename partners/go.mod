@@ -7,9 +7,8 @@ replace pkg => ../pkg
 require (
 	github.com/caarlos0/env/v11 v11.2.2
 	github.com/go-chi/chi/v5 v5.1.0
-	github.com/jybp/ebay v0.0.0-20190929001041-b6318935198a
+	github.com/stretchr/testify v1.9.0
 	github.com/swaggo/http-swagger v1.3.4
-	golang.org/x/oauth2 v0.21.0
 	golang.org/x/sync v0.8.0
 	pkg v0.0.0-00010101000000-000000000000
 )
@@ -29,14 +28,12 @@ require (
 	github.com/klauspost/compress v1.17.9 // indirect
 	github.com/mailru/easyjson v0.7.7 // indirect
 	github.com/munnerz/goautoneg v0.0.0-20191010083416-a7dc8b61c822 // indirect
-	github.com/pkg/errors v0.8.1 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/prometheus/client_golang v1.20.5 // indirect
 	github.com/prometheus/client_model v0.6.1 // indirect
 	github.com/prometheus/common v0.55.0 // indirect
 	github.com/prometheus/procfs v0.15.1 // indirect
 	github.com/stretchr/objx v0.5.2 // indirect
-	github.com/stretchr/testify v1.9.0 // indirect
 	github.com/swaggo/files v0.0.0-20220610200504-28940afbdbfe // indirect
 	github.com/swaggo/swag v1.8.1 // indirect
 	golang.org/x/net v0.28.0 // indirect
