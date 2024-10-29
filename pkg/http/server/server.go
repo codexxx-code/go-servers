@@ -66,5 +66,8 @@ func (s *Server) Serve(ctx context.Context) error {
 }
 
 func (s *Server) Shutdown(ctx context.Context) {
+
+	log.Warning(ctx, "Shutting down HTTP-server", log.SkipThisCallOption())
+
 	_ = s.server.Shutdown(ctx)
 }

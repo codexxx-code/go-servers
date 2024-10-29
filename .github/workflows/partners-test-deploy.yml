@@ -6,14 +6,14 @@ on:
     - release/*
     - hotfix/*
     paths:
-      - 'generator/**'
+      - 'partners/**'
 
 jobs:
   general-deploy-pipeline:
     uses: ./.github/workflows/reusable-deploy.yml
     with:
-      service_port: 8081
-      service_name: generator
+      service_port: 8083
+      service_name: partners
       test_suffix: -test
       command_args: -log-format=text -env-mode=test
     secrets: inherit

@@ -5,13 +5,13 @@ on:
     tags:
       - v*
     paths:
-      - 'generator/**'
+      - 'partners/**'
 
 jobs:
   general-deploy-pipeline:
     uses: ./.github/workflows/reusable-deploy.yml
     with:
-      service_port: 8080
-      service_name: generator
+      service_port: 8082
+      service_name: partners
       command_args: -log-format=text -env-mode=prod
     secrets: inherit
