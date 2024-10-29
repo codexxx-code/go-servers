@@ -1,4 +1,4 @@
-name: test deploy
+name: test generator deploy
 
 on:
   push:
