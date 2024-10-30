@@ -30,7 +30,7 @@ test-coverage-html: mockery
 test: mockery
 	go test ./...
 
-deploy-check: check-swagger test lint
+deploy-check: test lint check-swagger
 
 migration-create-file:
 	goose -dir migrations/pgsql create init sql

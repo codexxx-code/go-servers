@@ -59,7 +59,7 @@ jobs:
           service_port: ${{ inputs.service_port }}
           test_suffix: ${{ inputs.test_suffix }}
           command_args: ${{ inputs.command_args }}
-          image_name: "${{ env.REGISTRY }}/${{ github.repository_owner }}/${{ inputs.service_name }}:${{ github.run_id }}"
+          image_name: "${{ env.REGISTRY }}/${{ github.repository_owner }}/${{ inputs.service_name }}${{ inputs.test_suffix }}:${{ github.run_id }}"
 
 
   # Собираем и пушим Docker-образ

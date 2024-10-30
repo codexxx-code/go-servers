@@ -12,6 +12,7 @@ require (
 	github.com/sashabaranov/go-openai v1.32.3
 	github.com/stretchr/testify v1.9.0
 	github.com/swaggo/http-swagger v1.3.4
+	github.com/swaggo/swag v1.8.1
 	golang.org/x/sync v0.8.0
 	gopkg.in/telebot.v3 v3.3.8
 	pkg v0.0.0-00010101000000-000000000000
@@ -50,7 +51,6 @@ require (
 	github.com/sethvargo/go-retry v0.3.0 // indirect
 	github.com/stretchr/objx v0.5.2 // indirect
 	github.com/swaggo/files v0.0.0-20220610200504-28940afbdbfe // indirect
-	github.com/swaggo/swag v1.8.1 // indirect
 	go.uber.org/multierr v1.11.0 // indirect
 	golang.org/x/crypto v0.28.0 // indirect
 	golang.org/x/net v0.28.0 // indirect

@@ -87,6 +87,8 @@ func First[T any](array []T) *T {
 	}
 }
 
+var ErrSliceIsEmpty = errors.New("Значение массива не найдено")
+
 // FirstWithError получает массив и ошибку (как правило в таком формате возвращают функции получения массива элементов)
 // Если пришедшая ошибка не пустая, просто возвращаем ее
 // Если пришедший массив пустой, возвращаем ошибку
@@ -109,7 +111,7 @@ func FirstWithError[T any](array []T, initialErr error) (value T, err error) {
 	if valuePtr == nil {
 
 		// Возвращаем ошибку
-		return value, errors.NotFound.New("Значение массива не найдено",
+		return value, errors.NotFound.Wrap(ErrSliceIsEmpty,
 			errors.ParamsOption("Type", fmt.Sprintf("%T", value)),
 		)
 	}

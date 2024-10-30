@@ -3,7 +3,7 @@ package promptDDL
 import "generator/internal/ddl"
 
 const (
-	Table          = ddl.SchemaZodiac + "." + "prompts"
+	Table          = ddl.SchemaGenerator + "." + "prompts"
 	TableWithAlias = Table + " " + alias
 	alias          = "p"
 )

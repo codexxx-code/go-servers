@@ -155,4 +155,5 @@ func initSingletons(cfg config.Config) error {
 	}
 
 	return nil
+	
 }
