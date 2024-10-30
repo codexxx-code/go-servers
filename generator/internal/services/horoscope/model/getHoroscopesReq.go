@@ -1,12 +1,12 @@
 package model
 
 import (
-	"generator/internal/services/forecast/model/zodiac"
+	"generator/internal/services/horoscope/model/zodiac"
 
 	"pkg/datetime"
 )
 
-type GetForecastsReq struct {
+type GetHoroscopesReq struct {
 	Dates   []datetime.Date
 	Zodiacs []zodiac.Zodiac
 }

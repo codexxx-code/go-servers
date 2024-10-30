@@ -1,5 +1,6 @@
 package ddl
 
 const (
-	SchemaZodiac = "zodiac"
+	SchemaGenerator = "generator"
+	SchemaHoroscope = "horoscope"
 )

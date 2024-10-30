@@ -13,19 +13,15 @@ import (
 
 	"generator/internal/config"
 	_ "generator/internal/docs"
-	forecastEndpoint "generator/internal/services/forecast/endpoint"
-	forecastRepository "generator/internal/services/forecast/repository"
-	forecastService "generator/internal/services/forecast/service"
 	"generator/internal/services/generator/ai/chatGPT"
-	generatorEndpoint "generator/internal/services/generator/endpoint"
 	generatorService "generator/internal/services/generator/service"
+	horoscopeEndpoint "generator/internal/services/horoscope/endpoint"
+	horoscopeRepository "generator/internal/services/horoscope/repository"
+	horoscopeService "generator/internal/services/horoscope/service"
 	promptEndpoint "generator/internal/services/prompt/endpoint"
 	promptRepository "generator/internal/services/prompt/repository"
 	promptService "generator/internal/services/prompt/service"
-	"generator/internal/services/scheduler"
-	tgBotService "generator/internal/services/tgBot/service"
 	"generator/migrations"
-
 	"pkg/database/postgresql"
 	"pkg/http/middleware"
 	"pkg/http/router"
@@ -37,7 +33,7 @@ import (
 	"pkg/stackTrace"
 )
 
-// @title Forecast Server Documentation
+// @title Horoscope Server Documentation
 // @version @{version} (build @{build}) (commit @{commit})
 // @description API Documentation for Coin
 // @contact.name Ilia Ivanov
@@ -142,16 +138,6 @@ func run() error {
 		return err
 	}
 
-	// Инициализируем телеграм бота
-	log.Info(ctx, "Инициализируем Telegram-бота")
-	tgBotService, err := tgBotService.NewTgBotService(cfg.Telegram.Token, cfg.Telegram.ChatID, cfg.Telegram.Enabled)
-	if err != nil {
-		return err
-	}
-	if cfg.Telegram.Enabled {
-		defer tgBotService.Bot.Close()
-	}
-
 	// Инициализируем клиента ChatGPT
 	log.Info(ctx, "Инициализируем OpenAI ChatGPT")
 	openai := openai.NewClient(cfg.ChatGPTApiKey)
@@ -159,22 +145,15 @@ func run() error {
 
 	// Регистрируем репозитории
 	promptRepository := promptRepository.NewPromptRepository(postrgreSQL)
-	forecastRepository := forecastRepository.NewForecastRepository(postrgreSQL)
+	horoscopeRepository := horoscopeRepository.NewHoroscopeRepository(postrgreSQL)
 
 	// Регистрируем сервисы
 	promptService := promptService.NewPromptService(promptRepository)
-	forecastService := forecastService.NewForecastService(forecastRepository)
-	generatorService := generatorService.NewGeneratorService(chatGPTService, promptService, forecastService, tgBotService)
-	scheduler := scheduler.NewScheduler(generatorService, cfg.GenerationEnabled)
-
-	log.Info(ctx, "Запускаем планировщик")
-	if err := scheduler.Start(); err != nil {
-		return err
-	}
+	generatorService := generatorService.NewGeneratorService(chatGPTService, promptService)
+	horoscopeService := horoscopeService.NewHoroscopeService(horoscopeRepository, generatorService)
 
 	r := router.NewRouter()
-	forecastEndpoint.MountForecastEndpoints(r, forecastService)
-	generatorEndpoint.MountGeneratorEndpoints(r, generatorService)
+	horoscopeEndpoint.MountHoroscopeEndpoints(r, horoscopeService)
 	promptEndpoint.MountPromptEndpoints(r, promptService)
 	r.Mount("/swagger", httpSwagger.WrapHandler)
 
