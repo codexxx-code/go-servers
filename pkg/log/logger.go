@@ -26,6 +26,7 @@ var logger = &loggerSettings{
 	systemInfo: model.SystemInfo{
 		Hostname: "",
 		Version:  "",
+		Commit:   "",
 		Build:    "",
 		Env:      "",
 	},

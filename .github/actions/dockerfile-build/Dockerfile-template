@@ -3,7 +3,7 @@ FROM golang:1.23 AS builder
 RUN apt install ca-certificates
 ADD . /@{project_name}
 WORKDIR /@{project_name}/@{project_name}
-RUN sed -i -e 's|@{build}|@{build_number}|g' -e 's|@{version}|@{version_number}|g' internal/main.go
+RUN sed -i -e 's|@{build}|@{build_number}|g' -e 's|@{version}|@{version_number}|g' -e 's|@{commit}|@{commit_hash}|g' internal/main.go
 RUN go generate ./...
 RUN go build -o ../main internal/main.go
 

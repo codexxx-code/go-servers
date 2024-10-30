@@ -1,0 +1,3 @@
+GET https://api.{{host}}/commerce/taxonomy/v1/get_default_category_tree_id
+    ?marketplace_id=EBAY_US
+Authorization: Bearer {{bearer_token}}
