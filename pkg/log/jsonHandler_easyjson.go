@@ -312,6 +312,8 @@ func easyjson65a741d4DecodePkgLogModel(in *jlexer.Lexer, out *model.SystemInfo) 
 			out.Version = string(in.String())
 		case "build":
 			out.Build = string(in.String())
+		case "commit":
+			out.Commit = string(in.String())
 		case "env":
 			out.Env = string(in.String())
 		default:
@@ -342,6 +344,11 @@ func easyjson65a741d4EncodePkgLogModel(out *jwriter.Writer, in model.SystemInfo)
 		const prefix string = ",\"build\":"
 		out.RawString(prefix)
 		out.String(string(in.Build))
+	}
+	{
+		const prefix string = ",\"commit\":"
+		out.RawString(prefix)
+		out.String(string(in.Commit))
 	}
 	{
 		const prefix string = ",\"env\":"

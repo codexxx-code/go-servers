@@ -95,6 +95,7 @@ func (typ ErrorType) New(msg string, opts ...Option) error {
 		SystemInfo: model.SystemInfo{ // Будет заполняться автоматически в функции логгирования
 			Hostname: "",
 			Version:  "",
+			Commit:   "",
 			Build:    "",
 			Env:      "",
 		},
@@ -159,6 +160,7 @@ func (typ ErrorType) Wrap(err error, opts ...Option) error {
 			SystemInfo: model.SystemInfo{ // Будет автоматически заполняться в функции логгирования
 				Hostname: "",
 				Version:  "",
+				Commit:   "",
 				Build:    "",
 				Env:      "",
 			},

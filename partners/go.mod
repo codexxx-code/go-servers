@@ -9,7 +9,6 @@ require (
 	github.com/go-chi/chi/v5 v5.1.0
 	github.com/stretchr/testify v1.9.0
 	github.com/swaggo/http-swagger v1.3.4
-	github.com/swaggo/swag v1.8.1
 	golang.org/x/sync v0.8.0
 	pkg v0.0.0-00010101000000-000000000000
 )
@@ -37,6 +36,7 @@ require (
 	github.com/prometheus/procfs v0.15.1 // indirect
 	github.com/stretchr/objx v0.5.2 // indirect
 	github.com/swaggo/files v0.0.0-20220610200504-28940afbdbfe // indirect
+	github.com/swaggo/swag v1.8.1 // indirect
 	golang.org/x/net v0.28.0 // indirect
 	golang.org/x/sys v0.26.0 // indirect
 	golang.org/x/tools v0.21.1-0.20240508182429-e35e4ccd0d2d // indirect

@@ -26,7 +26,7 @@ import (
 )
 
 // @title Partners Server Documentation
-// @version @{version} (build @{build})
+// @version @{version} (build @{build}) (commit @{commit})
 // @description API Documentation for adaptor for partners
 // @contact.name Ilia Ivanov
 // @contact.email bonavii@icloud.com
@@ -41,8 +41,11 @@ import (
 //go:generate go mod download
 //go:generate swag init -o docs --parseInternal --parseDependency
 
-const version = "@{version}"
-const build = "@{build}"
+const (
+	version = "@{version}"
+	build   = "@{build}"
+	commit  = "@{commit}"
+)
 
 func main() {
 	if err := run(); err != nil {
@@ -86,6 +89,7 @@ func run() error {
 			Hostname: hostname,
 			Version:  version,
 			Build:    build,
+			Commit:   commit,
 			Env:      *envMode,
 		},
 		logHandlers...,
