@@ -15,7 +15,7 @@ import (
 // @Produce json
 // @Success 200 {object} []model.Category
 // @Failure 400,401,403,404,500 {object} errors.Error
-// @Router /ebay/category [get]
+// @Router /ebay/categories [get]
 func (e *endpoint) getCategories(ctx context.Context, r *http.Request) (any, error) {
 
 	var req model.GetCategoriesReq

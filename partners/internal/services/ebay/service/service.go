@@ -14,8 +14,12 @@ type EbayService struct {
 var _ EbayNetwork = new(ebayNetwork.EbayNetwork)
 
 type EbayNetwork interface {
+	// Categories
 	GetCategoryTreeID(ctx context.Context, req ebayNetworkModel.GetCategoryTreeIDReq) (ebayNetworkModel.GetCategoryTreeIDRes, error)
 	GetCategories(ctx context.Context, req ebayNetworkModel.GetCategoriesReq) (ebayNetworkModel.GetCategoriesRes, error)
+
+	// Items
+	GetItems(ctx context.Context, req ebayNetworkModel.GetItemsReq) (ebayNetworkModel.GetItemsRes, error)
 }
 
 func NewEbayService(
