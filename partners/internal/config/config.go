@@ -18,9 +18,9 @@ type Config struct {
 }
 
 type EbayConfig struct {
-	ClientID     string `env:"EBAY_CLIENT"`
+	ClientID     string `env:"EBAY_CLIENT_ID"`
 	ClientSecret string `env:"EBAY_CLIENT_SECRET"`
-	IsSandbox    bool   `env:"EBAY_IsSandbox"`
+	IsSandbox    bool   `env:"EBAY_IS_SANDBOX"`
 }
 
 // GetConfig возвращает конфигурацию из .env файла

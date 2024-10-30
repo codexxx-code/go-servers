@@ -38,7 +38,8 @@ func NewEbayAuthManager(
 ) *EbayAuthManager {
 
 	// Кодируем в base64 строку вида "client_id:client_secret"
-	basicToken := base64.StdEncoding.EncodeToString([]byte(fmt.Sprintf("%s:%s", config.ClientID, config.ClientSecret)))
+	creds := fmt.Sprintf("%s:%s", config.ClientID, config.ClientSecret)
+	basicToken := base64.StdEncoding.EncodeToString([]byte(creds))
 
 	return &EbayAuthManager{
 		ebayNetwork: ebayNetwork,

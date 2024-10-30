@@ -10,7 +10,7 @@ import (
 
 type EbayNetwork struct {
 	httpClient  http.Client
-	isSandbox   bool
+	baseHost    string
 	authManager AuthManager
 }
 
@@ -30,7 +30,7 @@ func NewEbayNetwork(config config.EbayConfig) *EbayNetwork {
 			Jar:           nil,
 			Timeout:       0,
 		},
-		isSandbox: config.IsSandbox,
+		baseHost: baseHostMap[config.IsSandbox],
 	}
 
 	// Делаем запрос на авторизацию
@@ -40,4 +40,9 @@ func NewEbayNetwork(config config.EbayConfig) *EbayNetwork {
 	ebayNetwork.authManager = authManager
 
 	return ebayNetwork
+}
+
+var baseHostMap = map[bool]string{
+	true:  "https://api.sandbox.ebay.com",
+	false: "https://api.ebay.com",
 }

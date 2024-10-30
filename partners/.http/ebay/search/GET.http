@@ -1,2 +1,0 @@
-GET https://api.{{host}}/buy/browse/v1/item_summary/search?q=iphone
-Authorization: Bearer {{bearer_token}}
