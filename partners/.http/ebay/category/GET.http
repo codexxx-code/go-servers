@@ -1,2 +1,2 @@
 GET http://localhost:8080/ebay/category
-    ?maxDeepLevel=-1
+    ?id=38

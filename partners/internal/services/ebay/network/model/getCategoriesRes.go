@@ -16,22 +16,18 @@ type categoryInfo struct {
 	CategoryName string `json:"categoryName"`
 }
 
-func (s GetCategoriesRes) ConvertToBusinessModel(maxDeepLevel *uint8) []model.Category {
-	return s.Root.convertToBusinessModel(maxDeepLevel).Subcategories
+func (s GetCategoriesRes) ConvertToBusinessModel() []model.Category {
+	return s.Root.convertToBusinessModel(0).Subcategories
 }
 
-func (s category) convertToBusinessModel(maxDeepLevel *uint8) model.Category {
+func (s category) convertToBusinessModel(level uint8) model.Category {
 
 	// Конвертируем категорию из формата ebay в наш формат
 	category := model.Category{
 		ID:            s.CategoryInfo.CategoryId,
 		Name:          s.CategoryInfo.CategoryName,
+		Level:         level,
 		Subcategories: nil,
-	}
-
-	// Если уровень вложенности больше максимального, то прекращаем рекурсию
-	if maxDeepLevel != nil && *maxDeepLevel == 0 {
-		return category
 	}
 
 	// Если есть подкатегории, аллоцируем память под них
@@ -39,18 +35,11 @@ func (s category) convertToBusinessModel(maxDeepLevel *uint8) model.Category {
 		category.Subcategories = make([]model.Category, 0, len(s.Subcategories))
 	}
 
-	// Уменьшаем максимальный уровень вложенности
-	if maxDeepLevel != nil {
-		maxDeepLevelValue := *maxDeepLevel
-		maxDeepLevel = new(uint8)
-		*maxDeepLevel = maxDeepLevelValue - 1
-	}
-
 	// Проходимся по каждой подкатегории
 	for _, subcategory := range s.Subcategories {
 
 		// Конвертируем подкатегорию из формата ebay в наш формат
-		category.Subcategories = append(category.Subcategories, subcategory.convertToBusinessModel(maxDeepLevel))
+		category.Subcategories = append(category.Subcategories, subcategory.convertToBusinessModel(level+1))
 	}
 
 	return category

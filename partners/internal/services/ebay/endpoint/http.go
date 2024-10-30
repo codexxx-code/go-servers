@@ -18,7 +18,13 @@ type endpoint struct {
 var _ EbayService = new(ebaySerivce.EbayService)
 
 type EbayService interface {
-	GetCategories(ctx context.Context, req model.GetCategoriesReq) ([]model.Category, error)
+
+	// Categories
+	GetCategories(context.Context, model.GetCategoriesReq) ([]model.Category, error)
+	GetBreadcrumbs(context.Context, model.GetBreadcrumbsReq) (model.Category, error)
+
+	// Items
+	GetItems(context.Context, model.GetItemsReq) ([]model.Item, error)
 }
 
 // MountEbayEndpoints mounts ebay endpoints to the router
@@ -34,7 +40,12 @@ func newEbayEndpoint(service EbayService) http.Handler {
 
 	r := chi.NewRouter()
 
-	r.Method(http.MethodGet, "/category", chain.NewChain(e.getCategories))
+	// Categories
+	r.Method(http.MethodGet, "/categories", chain.NewChain(e.getCategories))            // GET /ebay/categories
+	r.Method(http.MethodGet, "/category/breadcrumbs", chain.NewChain(e.getBreadcrumbs)) // GET /ebay/category/breadcrumbs
+
+	// Items
+	r.Method(http.MethodGet, "/items", chain.NewChain(e.getItems)) // GET /ebay/items
 
 	return r
 }

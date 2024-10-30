@@ -1,0 +1,2 @@
+GET https://api.{{host}}/buy/browse/v1/item/3
+Authorization: Bearer {{bearer_token}}
