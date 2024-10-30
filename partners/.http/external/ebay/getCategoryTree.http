@@ -1,0 +1,3 @@
+GET https://api.{{host}}/commerce/taxonomy/v1/category_tree/0
+Authorization: Bearer {{bearer_token}}
+Accept-Encoding: gzip

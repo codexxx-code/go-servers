@@ -1,4 +1,4 @@
-name: test deploy
+name: test partners deploy
 
 on:
   push:

@@ -16,7 +16,7 @@ func (s *EbayAuthManager) GetToken(ctx context.Context) (string, error) {
 	defer s.bearer.mu.Unlock()
 
 	// Если токен не истек
-	if !time.Now().After(s.bearer.bearerTokenExpiredDate) {
+	if !time.Now().After(s.bearer.bearerTokenExpiredDate) && s.bearer.bearerToken != "" {
 
 		// Просто возвращаем токен
 		return s.bearer.bearerToken, nil

@@ -1,7 +1,10 @@
 package service
 
 import (
+	"context"
+
 	ebayNetwork "partners/internal/services/ebay/network"
+	ebayNetworkModel "partners/internal/services/ebay/network/model"
 )
 
 type EbayService struct {
@@ -10,7 +13,10 @@ type EbayService struct {
 
 var _ EbayNetwork = new(ebayNetwork.EbayNetwork)
 
-type EbayNetwork interface{}
+type EbayNetwork interface {
+	GetCategoryTreeID(ctx context.Context, req ebayNetworkModel.GetCategoryTreeIDReq) (ebayNetworkModel.GetCategoryTreeIDRes, error)
+	GetCategories(ctx context.Context, req ebayNetworkModel.GetCategoriesReq) (ebayNetworkModel.GetCategoriesRes, error)
+}
 
 func NewEbayService(
 	ebayNetwork EbayNetwork,

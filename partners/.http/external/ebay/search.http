@@ -1,0 +1,2 @@
+GET https://api.{{host}}/buy/browse/v1/item_summary/search?q=phone&category_ids=9355
+Authorization: Bearer {{bearer_token}}

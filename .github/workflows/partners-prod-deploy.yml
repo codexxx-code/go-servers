@@ -1,4 +1,4 @@
-name: prod deploy
+name: prod partners deploy
 
 on:
   push:
