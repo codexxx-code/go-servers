@@ -14,9 +14,37 @@ type MockEbayService struct {
 	mock.Mock
 }
 
-// GetCategories provides a mock function with given fields: ctx, req
-func (_m *MockEbayService) GetCategories(ctx context.Context, req model.GetCategoriesReq) ([]model.Category, error) {
-	ret := _m.Called(ctx, req)
+// GetBreadcrumbs provides a mock function with given fields: _a0, _a1
+func (_m *MockEbayService) GetBreadcrumbs(_a0 context.Context, _a1 model.GetBreadcrumbsReq) (model.Category, error) {
+	ret := _m.Called(_a0, _a1)
+
+	if len(ret) == 0 {
+		panic("no return value specified for GetBreadcrumbs")
+	}
+
+	var r0 model.Category
+	var r1 error
+	if rf, ok := ret.Get(0).(func(context.Context, model.GetBreadcrumbsReq) (model.Category, error)); ok {
+		return rf(_a0, _a1)
+	}
+	if rf, ok := ret.Get(0).(func(context.Context, model.GetBreadcrumbsReq) model.Category); ok {
+		r0 = rf(_a0, _a1)
+	} else {
+		r0 = ret.Get(0).(model.Category)
+	}
+
+	if rf, ok := ret.Get(1).(func(context.Context, model.GetBreadcrumbsReq) error); ok {
+		r1 = rf(_a0, _a1)
+	} else {
+		r1 = ret.Error(1)
+	}
+
+	return r0, r1
+}
+
+// GetCategories provides a mock function with given fields: _a0, _a1
+func (_m *MockEbayService) GetCategories(_a0 context.Context, _a1 model.GetCategoriesReq) ([]model.Category, error) {
+	ret := _m.Called(_a0, _a1)
 
 	if len(ret) == 0 {
 		panic("no return value specified for GetCategories")
@@ -25,10 +53,10 @@ func (_m *MockEbayService) GetCategories(ctx context.Context, req model.GetCateg
 	var r0 []model.Category
 	var r1 error
 	if rf, ok := ret.Get(0).(func(context.Context, model.GetCategoriesReq) ([]model.Category, error)); ok {
-		return rf(ctx, req)
+		return rf(_a0, _a1)
 	}
 	if rf, ok := ret.Get(0).(func(context.Context, model.GetCategoriesReq) []model.Category); ok {
-		r0 = rf(ctx, req)
+		r0 = rf(_a0, _a1)
 	} else {
 		if ret.Get(0) != nil {
 			r0 = ret.Get(0).([]model.Category)
@@ -36,7 +64,7 @@ func (_m *MockEbayService) GetCategories(ctx context.Context, req model.GetCateg
 	}
 
 	if rf, ok := ret.Get(1).(func(context.Context, model.GetCategoriesReq) error); ok {
-		r1 = rf(ctx, req)
+		r1 = rf(_a0, _a1)
 	} else {
 		r1 = ret.Error(1)
 	}
