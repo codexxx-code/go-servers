@@ -89,7 +89,8 @@ type Item struct {
 
 func (i *Item) ConvertToBusinessModel() model.Item {
 
-	images := make([]string, 0, len(i.AdditionalImages))
+	images := make([]string, 0, len(i.AdditionalImages)+1)
+	images = append(images, i.Image.ImageUrl)
 	for _, image := range i.AdditionalImages {
 		images = append(images, image.ImageUrl)
 	}
