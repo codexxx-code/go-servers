@@ -4,8 +4,10 @@ import (
 	"context"
 	"net/http"
 
+	"partners/internal/services/ebay/model"
 	_ "partners/internal/services/ebay/model"
-	"pkg/errors"
+	"pkg/http/decoder"
+	"pkg/validator"
 )
 
 // @Summary Получение товаров по фильтрам
@@ -17,22 +19,18 @@ import (
 // @Router /ebay/items [get]
 func (e *endpoint) getItems(ctx context.Context, r *http.Request) (any, error) {
 
-	return nil, errors.InternalServer.New("Это заглушка для доки")
+	var req model.GetItemsReq
 
-	/*
-		var req model.GetItemsReq
+	// Декодируем запрос
+	if err := decoder.Decoder(ctx, r, &req, decoder.DecodeSchema); err != nil {
+		return nil, err
+	}
 
-		// Декодируем запрос
-		if err := decoder.Decoder(ctx, r, &req, decoder.DecodeSchema); err != nil {
-			return nil, err
-		}
+	// Валидируем запрос
+	if err := validator.Validate(req); err != nil {
+		return nil, err
+	}
 
-		// Валидируем запрос
-		if err := validator.Validate(req); err != nil {
-			return nil, err
-		}
-
-		// Вызываем метод сервиса
-		return e.service.GetItems(ctx, req)
-	*/
+	// Вызываем метод сервиса
+	return e.service.GetItems(ctx, req)
 }
