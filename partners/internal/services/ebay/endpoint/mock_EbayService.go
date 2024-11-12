@@ -72,28 +72,56 @@ func (_m *MockEbayService) GetCategories(_a0 context.Context, _a1 model.GetCateg
 	return r0, r1
 }
 
-// GetItems provides a mock function with given fields: _a0, _a1
-func (_m *MockEbayService) GetItems(_a0 context.Context, _a1 model.GetItemsReq) ([]model.Item, error) {
+// GetItemDetails provides a mock function with given fields: _a0, _a1
+func (_m *MockEbayService) GetItemDetails(_a0 context.Context, _a1 model.GetItemDetailsReq) (model.ItemDetails, error) {
 	ret := _m.Called(_a0, _a1)
 
 	if len(ret) == 0 {
-		panic("no return value specified for GetItems")
+		panic("no return value specified for GetItemDetails")
 	}
 
-	var r0 []model.Item
+	var r0 model.ItemDetails
 	var r1 error
-	if rf, ok := ret.Get(0).(func(context.Context, model.GetItemsReq) ([]model.Item, error)); ok {
+	if rf, ok := ret.Get(0).(func(context.Context, model.GetItemDetailsReq) (model.ItemDetails, error)); ok {
 		return rf(_a0, _a1)
 	}
-	if rf, ok := ret.Get(0).(func(context.Context, model.GetItemsReq) []model.Item); ok {
+	if rf, ok := ret.Get(0).(func(context.Context, model.GetItemDetailsReq) model.ItemDetails); ok {
+		r0 = rf(_a0, _a1)
+	} else {
+		r0 = ret.Get(0).(model.ItemDetails)
+	}
+
+	if rf, ok := ret.Get(1).(func(context.Context, model.GetItemDetailsReq) error); ok {
+		r1 = rf(_a0, _a1)
+	} else {
+		r1 = ret.Error(1)
+	}
+
+	return r0, r1
+}
+
+// GetItemsSummary provides a mock function with given fields: _a0, _a1
+func (_m *MockEbayService) GetItemsSummary(_a0 context.Context, _a1 model.GetItemsSummaryReq) ([]model.ItemSummary, error) {
+	ret := _m.Called(_a0, _a1)
+
+	if len(ret) == 0 {
+		panic("no return value specified for GetItemsSummary")
+	}
+
+	var r0 []model.ItemSummary
+	var r1 error
+	if rf, ok := ret.Get(0).(func(context.Context, model.GetItemsSummaryReq) ([]model.ItemSummary, error)); ok {
+		return rf(_a0, _a1)
+	}
+	if rf, ok := ret.Get(0).(func(context.Context, model.GetItemsSummaryReq) []model.ItemSummary); ok {
 		r0 = rf(_a0, _a1)
 	} else {
 		if ret.Get(0) != nil {
-			r0 = ret.Get(0).([]model.Item)
+			r0 = ret.Get(0).([]model.ItemSummary)
 		}
 	}
 
-	if rf, ok := ret.Get(1).(func(context.Context, model.GetItemsReq) error); ok {
+	if rf, ok := ret.Get(1).(func(context.Context, model.GetItemsSummaryReq) error); ok {
 		r1 = rf(_a0, _a1)
 	} else {
 		r1 = ret.Error(1)

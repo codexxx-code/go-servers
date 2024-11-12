@@ -7,10 +7,10 @@ import (
 	networkModel "partners/internal/services/ebay/network/model"
 )
 
-func (s *EbayService) GetItems(ctx context.Context, req model.GetItemsReq) ([]model.Item, error) {
+func (s *EbayService) GetItemsSummary(ctx context.Context, req model.GetItemsSummaryReq) ([]model.ItemSummary, error) {
 
 	// Получаем все товары
-	items, err := s.ebayNetwork.GetItems(ctx, networkModel.GetItemsReq{
+	items, err := s.ebayNetwork.GetItemsSummary(ctx, networkModel.GetItemsSummaryReq{
 		CategoryID: req.CategoryID,
 	})
 	if err != nil {

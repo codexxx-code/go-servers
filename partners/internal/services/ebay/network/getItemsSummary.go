@@ -11,10 +11,10 @@ import (
 )
 
 const (
-	itemsPath = "/buy/browse/v1/item_summary/search"
+	itemsSummaryPath = "/buy/browse/v1/item_summary/search"
 )
 
-func (n *EbayNetwork) GetItems(ctx context.Context, req model.GetItemsReq) (res model.GetItemsRes, err error) {
+func (n *EbayNetwork) GetItemsSummary(ctx context.Context, req model.GetItemsSummaryReq) (res model.GetItemsSummaryRes, err error) {
 
 	// Формируем параметры запроса
 	var urlValues = make(url.Values)
@@ -28,7 +28,7 @@ func (n *EbayNetwork) GetItems(ctx context.Context, req model.GetItemsReq) (res 
 	resp, err := n.sendRequest(sendRequestDTO{
 		ctx:       ctx,
 		method:    http.MethodGet,
-		path:      itemsPath,
+		path:      itemsSummaryPath,
 		urlValues: urlValues,
 		headers:   nil,
 		withAuth:  true,

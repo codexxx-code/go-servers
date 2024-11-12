@@ -1,5 +1,5 @@
 package model
 
-type GetItemsReq struct {
+type GetItemsSummaryReq struct {
 	CategoryID *string
 }

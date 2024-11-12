@@ -6,7 +6,6 @@ severity:
   default-severity: error
 linters:
   enable:
-    - gomnd # magic number detector
     - gosec # security checker
     - unused # unused code
     - asasalint # check for common mistakes in Go code
@@ -21,7 +20,6 @@ linters:
     - errcheck # check for unchecked errors
     - errchkjson # check for unchecked errors
     - errname # error variable name
-    - execinquery # check for exec in query
     - exhaustive # exhaustivestruct
     - exhaustruct # check for missing fields in struct literals
     - exportloopref # check for loop variable captured by a closure
@@ -108,13 +106,10 @@ linters:
     - interfacer  # check for interface bloat
     - structcheck # check for struct tags
     - varcheck # check for unused variables
+    - execinquery # check for exec in query
+    - gomnd # magic number detector
 issues:
   exclude-rules:
-
-    # TODO: Разобраться и перевести все на константы
-    - path: buffer # Часть библиотеки, которая перекочевала из SSP, я в ней не разбирался
-      linters:
-        - gomnd # Ругается на магические числа, но для меня они рил магические, поэтому по делу
 
     # Этот линтер отвечает за проверку конвертации одного типа int в другой и соблюдения буфера, но как-то странно оно работает, мне не нравится
     - text: "G115"

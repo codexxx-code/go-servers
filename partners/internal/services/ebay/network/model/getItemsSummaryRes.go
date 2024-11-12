@@ -6,7 +6,7 @@ import (
 	"partners/internal/services/ebay/model"
 )
 
-type GetItemsRes struct {
+type GetItemsSummaryRes struct {
 	Href          string `json:"href"`
 	Total         int    `json:"total"`
 	Next          string `json:"next"`
@@ -15,8 +15,8 @@ type GetItemsRes struct {
 	ItemSummaries []Item `json:"itemSummaries"`
 }
 
-func (r GetItemsRes) ConvertToBusinessModel() []model.Item {
-	items := make([]model.Item, 0, len(r.ItemSummaries))
+func (r GetItemsSummaryRes) ConvertToBusinessModel() []model.ItemSummary {
+	items := make([]model.ItemSummary, 0, len(r.ItemSummaries))
 	for _, item := range r.ItemSummaries {
 		items = append(items, item.ConvertToBusinessModel())
 	}
@@ -87,7 +87,7 @@ type Item struct {
 	Epid        string    `json:"epid"`
 }
 
-func (i *Item) ConvertToBusinessModel() model.Item {
+func (i *Item) ConvertToBusinessModel() model.ItemSummary {
 
 	images := make([]string, 0, len(i.AdditionalImages)+1)
 	images = append(images, i.Image.ImageUrl)
@@ -95,7 +95,7 @@ func (i *Item) ConvertToBusinessModel() model.Item {
 		images = append(images, image.ImageUrl)
 	}
 
-	return model.Item{
+	return model.ItemSummary{
 		ID:     i.ItemId,
 		Title:  i.Title,
 		Images: images,

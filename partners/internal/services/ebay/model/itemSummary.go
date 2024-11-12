@@ -1,6 +1,6 @@
 package model
 
-type Item struct {
+type ItemSummary struct {
 	ID             string          `json:"id"`             // Идентификатор
 	Title          string          `json:"title"`          // Название
 	Images         []string        `json:"images"`         // Изображения

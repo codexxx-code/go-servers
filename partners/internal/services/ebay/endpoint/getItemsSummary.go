@@ -12,14 +12,14 @@ import (
 
 // @Summary Получение товаров по фильтрам
 // @Tags ebay
-// @Param Query query model.GetItemsReq false "model.GetItemsReq"
+// @Param Query query model.GetItemsSummaryReq false "model.GetItemsSummaryReq"
 // @Produce json
-// @Success 200 {object} []model.Item
+// @Success 200 {object} []model.ItemSummary
 // @Failure 400,401,403,404,500 {object} errors.Error
 // @Router /ebay/items [get]
-func (e *endpoint) getItems(ctx context.Context, r *http.Request) (any, error) {
+func (e *endpoint) getItemsSummary(ctx context.Context, r *http.Request) (any, error) {
 
-	var req model.GetItemsReq
+	var req model.GetItemsSummaryReq
 
 	// Декодируем запрос
 	if err := decoder.Decoder(ctx, r, &req, decoder.DecodeSchema); err != nil {
@@ -32,5 +32,5 @@ func (e *endpoint) getItems(ctx context.Context, r *http.Request) (any, error) {
 	}
 
 	// Вызываем метод сервиса
-	return e.service.GetItems(ctx, req)
+	return e.service.GetItemsSummary(ctx, req)
 }
