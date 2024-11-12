@@ -11,11 +11,11 @@ import (
 
 // @Summary Получение подробной информации по товару
 // @Tags ebay
-// @Param Query query model.GetItemDetailsReq false "model.GetItemDetailsReq"
+// @Param id path string true "The item identification"
 // @Produce json
 // @Success 200 {object} model.ItemDetails
 // @Failure 400,401,403,404,500 {object} errors.Error
-// @Router /ebay/item/:id [get]
+// @Router /ebay/item/{id} [get]
 func (e *endpoint) getItemDetails(ctx context.Context, r *http.Request) (any, error) {
 
 	var req model.GetItemDetailsReq
