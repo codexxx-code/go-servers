@@ -1,0 +1,123 @@
+{
+    "id": "0123456789ABCDEF0123456789ABCDEF",
+    "at": 2,
+    "tmax": 120,
+    "imp": [
+        {
+            "id": "1",
+            "pmp": {
+                "private_auction": 1,
+                "deals": [
+                    {
+                        "id": "1452f.eadb4.7aaa",
+                        "bidfloor": 5.3,
+                        "at": 1,
+                        "wseats": [],
+                        "ext": {"priority":1,"wadvs":[]}
+                    }
+                ]
+            },
+            "audio": {
+                "mimes": [
+                    "audio/mp4"
+                ],
+                "minduration": 5,
+                "maxduration": 30,
+                "protocols": [
+                    9,
+                    10
+                ],
+                "startdelay": 0,
+                "sequence": 0,
+                "battr": [
+                    13,
+                    14
+                ],
+                "maxextended": 30,
+                "minbitrate": 300,
+                "maxbitrate": 1500,
+                "delivery": [
+                    2
+                ],
+                "companionad": [
+                    {
+                        "id": "1234567893-1",
+                        "w": 300,
+                        "h": 250,
+                        "pos": 1,
+                        "battr": [
+                            13,
+                            14
+                        ],
+                        "expdir": [
+                            2,
+                            4
+                        ]
+                    }
+                ],
+                "api": [
+                    1,
+                    2
+                ],
+                "companiontype": [
+                    1,
+                    2
+                ]
+            }
+        }
+    ],
+    "site": {
+        "id": "1345135123",
+        "name": "Site ABCD",
+        "domain": "siteabcd.com",
+        "cat": [
+            "IAB2-1",
+            "IAB2-2"
+        ],
+        "page": "http://siteabcd.com/page.htm",
+        "ref": "http://referringsite.com/referringpage.htm",
+        "privacypolicy": 1,
+        "publisher": {
+            "id": "pub12345",
+            "name": "Publisher A"
+        },
+        "content": {
+            "cat": [
+                "IAB2-2"
+            ],
+            "episode": 23,
+            "id": "1234567",
+            "keywords": "keyword a,keyword b,keyword c",
+            "season": "2",
+            "series": "All About Cars",
+            "title": "Car Show"
+        }
+    },
+    "device": {
+        "ip": "64.124.253.1",
+        "ua": "Mozilla/5.0 (Mac; U; Intel Mac OS X 10.6; en-US; rv:1.9.2.16) Gecko/20140420 Firefox/3.6.16",
+        "os": "OS X",
+        "flashver": "10.1",
+        "js": 1
+    },
+    "user": {
+        "id": "456789876567897654678987656789",
+        "buyeruid": "545678765467876567898765678987654",
+        "data": [
+            {
+                "id": "6",
+                "name": "Data Provider 1",
+                "segment": [
+                    {
+                        "id": "12341318394918",
+                        "name": "auto intenders"
+                    },
+                    {
+                        "id": "1234131839491234",
+                        "name": "auto enthusiasts"
+                    }
+                ]
+            }
+        ]
+    }
+}

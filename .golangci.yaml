@@ -54,7 +54,6 @@ linters:
     - staticcheck # check for static errors
     - tenv # check for common mistakes in Go code
     - testableexamples # check for testable examples
-    - tparallel # check for parallel tests
     - typecheck # check for common mistakes in Go code
     - unconvert # check for redundant type conversions
     - unparam # check for unused function parameters
@@ -94,6 +93,7 @@ linters:
     - tagliatelle # check for common mistakes in Go code
     - testpackage # check for common mistakes in Go code
     - thelper # check for common mistakes in Go code
+    - tparallel # check for parallel tests
     - wsl # check for leading whitespace
     - wrapcheck # check for common mistakes in Go code
     - whitespace # check for leading whitespace
@@ -121,3 +121,7 @@ issues:
       linters:
         - maintidx # Слишком высокая цикломатическая сложность - ругается, когда слишком много тесткейсов в тесте
         - exhaustruct # Незаполнение полей в тестах, но зачастую в тестах стоит обозначать только проверяемые поля
+
+    - path: openrtb # Библиотека, которая перекочевала из другого проекта
+      linters:
+        - exhaustruct
