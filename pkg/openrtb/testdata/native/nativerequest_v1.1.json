@@ -1,0 +1,46 @@
+{
+	"ver": "1.1",
+	"layout": 1,
+	"adUnit": 1,
+	"context": 1,
+	"contextsubtype": 10,
+	"plcmttype": 11,
+	"aurlsupport": 1,
+	"durlsupport": 1,
+	"assets": [
+		{
+			"id": 123,
+			"required": 1,
+			"title": {
+				"len": 140
+			}
+		},
+		{
+			"id": 128,
+			"img": {
+				"type": 3,
+				"wmin": 836,
+				"hmin": 627
+			}
+		},
+		{
+			"id": 126,
+			"required": 1,
+			"data": {
+				"type": 1,
+				"len": 25
+			}
+		},
+		{
+			"id": 129,
+			"required": 1,
+			"video": {
+				"w": 640,
+				"h": 480,
+				"api": [1, 2],
+				"protocols": [2, 3],
+				"mimes": ["video/mp4"]
+			}
+		}
+	]
+}
