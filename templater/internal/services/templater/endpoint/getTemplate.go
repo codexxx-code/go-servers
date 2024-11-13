@@ -13,8 +13,9 @@ import (
 // @Summary Bidding
 // @Tags rtb
 // @Param sspSlug path string true "Slug of the SSP"
+// @Param Body body endpointModel.GetTemplateReq true "endpointModel.GetTemplateReq"
 // @Produce json
-// @Success 200 {object} endpointModel.GetTemplateReq
+// @Success 200 {object} endpointModel.GetTemplateRes
 // @Failure 400,401,403,404,500 {object} errors.Error
 // @Router /rtb/{sspSlug} [post]
 func (e *endpoint) getTemplate(ctx context.Context, r *http.Request) (any, error) {
