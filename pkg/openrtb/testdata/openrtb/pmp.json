@@ -1,0 +1,15 @@
+{
+    "private_auction": 1,
+    "deals": [
+        {
+            "id": "DX-1985-010A",
+            "bidfloor": 2.5,
+            "bidfloorcur": "RUB",
+            "at": 2
+        },
+        {
+            "id": "DX-1986-010A",
+            "bidfloor": 2.6
+        }
+    ]
+}

@@ -19,7 +19,8 @@ type EbayNetwork interface {
 	GetCategories(ctx context.Context, req ebayNetworkModel.GetCategoriesReq) (ebayNetworkModel.GetCategoriesRes, error)
 
 	// Items
-	GetItems(ctx context.Context, req ebayNetworkModel.GetItemsReq) (ebayNetworkModel.GetItemsRes, error)
+	GetItemsSummary(ctx context.Context, req ebayNetworkModel.GetItemsSummaryReq) (ebayNetworkModel.GetItemsSummaryRes, error)
+	GetItemDetails(ctx context.Context, req ebayNetworkModel.GetItemDetailsReq) (ebayNetworkModel.GetItemDetailsRes, error)
 }
 
 func NewEbayService(

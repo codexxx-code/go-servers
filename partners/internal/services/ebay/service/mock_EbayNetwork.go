@@ -70,26 +70,54 @@ func (_m *MockEbayNetwork) GetCategoryTreeID(ctx context.Context, req model.GetC
 	return r0, r1
 }
 
-// GetItems provides a mock function with given fields: ctx, req
-func (_m *MockEbayNetwork) GetItems(ctx context.Context, req model.GetItemsReq) (model.GetItemsRes, error) {
+// GetItemDetails provides a mock function with given fields: ctx, req
+func (_m *MockEbayNetwork) GetItemDetails(ctx context.Context, req model.GetItemDetailsReq) (model.GetItemDetailsRes, error) {
 	ret := _m.Called(ctx, req)
 
 	if len(ret) == 0 {
-		panic("no return value specified for GetItems")
+		panic("no return value specified for GetItemDetails")
 	}
 
-	var r0 model.GetItemsRes
+	var r0 model.GetItemDetailsRes
 	var r1 error
-	if rf, ok := ret.Get(0).(func(context.Context, model.GetItemsReq) (model.GetItemsRes, error)); ok {
+	if rf, ok := ret.Get(0).(func(context.Context, model.GetItemDetailsReq) (model.GetItemDetailsRes, error)); ok {
 		return rf(ctx, req)
 	}
-	if rf, ok := ret.Get(0).(func(context.Context, model.GetItemsReq) model.GetItemsRes); ok {
+	if rf, ok := ret.Get(0).(func(context.Context, model.GetItemDetailsReq) model.GetItemDetailsRes); ok {
 		r0 = rf(ctx, req)
 	} else {
-		r0 = ret.Get(0).(model.GetItemsRes)
+		r0 = ret.Get(0).(model.GetItemDetailsRes)
 	}
 
-	if rf, ok := ret.Get(1).(func(context.Context, model.GetItemsReq) error); ok {
+	if rf, ok := ret.Get(1).(func(context.Context, model.GetItemDetailsReq) error); ok {
+		r1 = rf(ctx, req)
+	} else {
+		r1 = ret.Error(1)
+	}
+
+	return r0, r1
+}
+
+// GetItemsSummary provides a mock function with given fields: ctx, req
+func (_m *MockEbayNetwork) GetItemsSummary(ctx context.Context, req model.GetItemsSummaryReq) (model.GetItemsSummaryRes, error) {
+	ret := _m.Called(ctx, req)
+
+	if len(ret) == 0 {
+		panic("no return value specified for GetItemsSummary")
+	}
+
+	var r0 model.GetItemsSummaryRes
+	var r1 error
+	if rf, ok := ret.Get(0).(func(context.Context, model.GetItemsSummaryReq) (model.GetItemsSummaryRes, error)); ok {
+		return rf(ctx, req)
+	}
+	if rf, ok := ret.Get(0).(func(context.Context, model.GetItemsSummaryReq) model.GetItemsSummaryRes); ok {
+		r0 = rf(ctx, req)
+	} else {
+		r0 = ret.Get(0).(model.GetItemsSummaryRes)
+	}
+
+	if rf, ok := ret.Get(1).(func(context.Context, model.GetItemsSummaryReq) error); ok {
 		r1 = rf(ctx, req)
 	} else {
 		r1 = ret.Error(1)

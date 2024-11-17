@@ -24,7 +24,8 @@ type EbayService interface {
 	GetBreadcrumbs(context.Context, model.GetBreadcrumbsReq) (model.Category, error)
 
 	// Items
-	GetItems(context.Context, model.GetItemsReq) ([]model.Item, error)
+	GetItemsSummary(context.Context, model.GetItemsSummaryReq) ([]model.ItemSummary, error)
+	GetItemDetails(context.Context, model.GetItemDetailsReq) (model.ItemDetails, error)
 }
 
 // MountEbayEndpoints mounts ebay endpoints to the router
@@ -45,7 +46,8 @@ func newEbayEndpoint(service EbayService) http.Handler {
 	r.Method(http.MethodGet, "/category/breadcrumbs", chain.NewChain(e.getBreadcrumbs)) // GET /ebay/category/breadcrumbs
 
 	// Items
-	r.Method(http.MethodGet, "/items", chain.NewChain(e.getItems)) // GET /ebay/items
+	r.Method(http.MethodGet, "/items", chain.NewChain(e.getItemsSummary))    // GET /ebay/items
+	r.Method(http.MethodGet, "/item/{id}", chain.NewChain(e.getItemDetails)) // GET /ebay/item/{item_id}
 
 	return r
 }

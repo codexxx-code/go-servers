@@ -1,6 +1,6 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="test partners" type="GoTestRunConfiguration" factoryName="Go Test">
-    <module name="zodiac-partners" />
+    <module name="zodiac" />
     <working_directory value="$PROJECT_DIR$/partners" />
     <EXTENSION ID="net.ashald.envfile">
       <option name="IS_ENABLED" value="true" />

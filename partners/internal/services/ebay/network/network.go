@@ -12,6 +12,7 @@ type EbayNetwork struct {
 	httpClient  http.Client
 	baseHost    string
 	authManager AuthManager
+	campaignID  string
 }
 
 var _ AuthManager = new(authManager.EbayAuthManager)
@@ -30,7 +31,8 @@ func NewEbayNetwork(config config.EbayConfig) *EbayNetwork {
 			Jar:           nil,
 			Timeout:       0,
 		},
-		baseHost: baseHostMap[config.IsSandbox],
+		baseHost:   baseHostMap[config.IsSandbox],
+		campaignID: config.CampaignID,
 	}
 
 	// Делаем запрос на авторизацию

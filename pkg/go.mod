@@ -14,8 +14,10 @@ require (
 	github.com/mailru/easyjson v0.7.7
 	github.com/pressly/goose/v3 v3.22.1
 	github.com/prometheus/client_golang v1.20.5
+	github.com/shopspring/decimal v1.4.0
 	github.com/stretchr/testify v1.9.0
 	github.com/tidwall/sjson v1.2.5
+	go.mongodb.org/mongo-driver v1.17.1
 	golang.org/x/crypto v0.28.0
 )
 
