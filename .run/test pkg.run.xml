@@ -1,9 +1,9 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="test partners" type="GoTestRunConfiguration" factoryName="Go Test">
+  <configuration default="false" name="test pkg" type="GoTestRunConfiguration" factoryName="Go Test">
     <module name="zodiac" />
-    <working_directory value="$PROJECT_DIR$/partners" />
+    <working_directory value="$PROJECT_DIR$/pkg" />
     <EXTENSION ID="net.ashald.envfile">
-      <option name="IS_ENABLED" value="true" />
+      <option name="IS_ENABLED" value="false" />
       <option name="IS_SUBST" value="false" />
       <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
       <option name="IS_IGNORE_MISSING_FILES" value="false" />
@@ -13,8 +13,7 @@
       </ENTRIES>
     </EXTENSION>
     <kind value="DIRECTORY" />
-    <package value="pkg" />
-    <directory value="$PROJECT_DIR$/partners" />
+    <directory value="$PROJECT_DIR$/pkg" />
     <filePath value="$PROJECT_DIR$" />
     <framework value="gotest" />
     <method v="2" />
