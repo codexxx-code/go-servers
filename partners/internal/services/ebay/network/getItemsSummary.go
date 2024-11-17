@@ -3,6 +3,7 @@ package network
 import (
 	"context"
 	"encoding/json"
+	"fmt"
 	"net/http"
 	"net/url"
 
@@ -30,9 +31,11 @@ func (n *EbayNetwork) GetItemsSummary(ctx context.Context, req model.GetItemsSum
 		method:    http.MethodGet,
 		path:      itemsSummaryPath,
 		urlValues: urlValues,
-		headers:   nil,
-		withAuth:  true,
-		body:      nil,
+		headers: map[string]string{
+			epnHeader: fmt.Sprintf("affiliateCampaignId=%s", n.campaignID),
+		},
+		withAuth: true,
+		body:     nil,
 	})
 	if err != nil {
 		return res, err

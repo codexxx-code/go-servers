@@ -83,6 +83,7 @@ type GetItemDetailsRes struct {
 	TopRatedBuyingExperience bool     `json:"topRatedBuyingExperience"`
 	BuyingOptions            []string `json:"buyingOptions"`
 	ItemWebUrl               string   `json:"itemWebUrl"`
+	ItemAffiliateWebUrl      string   `json:"itemAffiliateWebUrl"`
 	Description              string   `json:"description"`
 	PaymentMethods           []struct {
 		PaymentMethodType   string `json:"paymentMethodType"`
@@ -112,12 +113,12 @@ func (r GetItemDetailsRes) ConvertToBusinessModel() model.ItemDetails {
 		ID:          r.ItemId,
 		Title:       r.Title,
 		Description: r.Description,
-		Price:       model.PriceModel{
+		Price: model.PriceModel{
 			Value:    r.Price.Value,
 			Currency: r.Price.Currency,
 		},
-		Images:      images,
-		Brand:       r.Brand,
-		ItemWebUrl:  r.ItemWebUrl,
+		Images:     images,
+		Brand:      r.Brand,
+		ItemWebUrl: r.ItemAffiliateWebUrl,
 	}
 }

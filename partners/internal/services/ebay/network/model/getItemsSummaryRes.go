@@ -55,9 +55,10 @@ type Item struct {
 			Currency string `json:"currency"`
 		} `json:"shippingCost"`
 	} `json:"shippingOptions"`
-	BuyingOptions []string `json:"buyingOptions"`
-	ItemWebUrl    string   `json:"itemWebUrl"`
-	ItemLocation  struct {
+	BuyingOptions       []string `json:"buyingOptions"`
+	ItemWebUrl          string   `json:"itemWebUrl"`
+	ItemAffiliateWebUrl string   `json:"itemAffiliateWebUrl"`
+	ItemLocation        struct {
 		PostalCode string `json:"postalCode"`
 		Country    string `json:"country"`
 	} `json:"itemLocation"`
@@ -104,7 +105,7 @@ func (i *Item) ConvertToBusinessModel() model.ItemSummary {
 			Currency: i.Price.Currency,
 		},
 		MarketingPrice: i.MarketingPrice.ConvertToBusinessModel(),
-		ItemWebURL:     i.ItemWebUrl,
+		ItemWebURL:     i.ItemAffiliateWebUrl,
 	}
 }
 

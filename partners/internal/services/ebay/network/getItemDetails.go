@@ -12,6 +12,7 @@ import (
 )
 
 const (
+	epnHeader       = "X-EBAY-C-ENDUSERCTX"
 	itemDetailsPath = "/buy/browse/v1/item/%s"
 )
 
@@ -27,9 +28,11 @@ func (n *EbayNetwork) GetItemDetails(ctx context.Context, req model.GetItemDetai
 		method:    http.MethodGet,
 		path:      path,
 		urlValues: nil,
-		headers:   nil,
-		withAuth:  true,
-		body:      nil,
+		headers: map[string]string{
+			epnHeader: fmt.Sprintf("affiliateCampaignId=%s", n.campaignID),
+		},
+		withAuth: true,
+		body:     nil,
 	})
 	if err != nil {
 		return res, err
