@@ -1,7 +1,7 @@
-GET {{host}}/horoscope
+GET {{host}}/horoscope/prompt
     ?date=2024-12-11
     &horoscope_type=single
-    &language=russian
+    &language=english
     &primary_zodiac=aries
     &secondary_zodiac=aries
     &timeframe=day

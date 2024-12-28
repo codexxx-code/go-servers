@@ -10,7 +10,9 @@ import (
 )
 
 type GetHoroscopeReq struct {
-	DateFrom        datetime.Date               `schema:"date_from" json:"date_from" swaggertype:"string" format:"date" validate:"required"`                                                                         // Дата гороскопа (относительно которой считается период)
+	Date            datetime.Date               `schema:"date" json:"date" swaggertype:"string" format:"date" validate:"required"` // Дата гороскопа (относительно которой считается период)
+	DateFrom        datetime.Date               `schema:"-" json:"-"`
+	DateTo          datetime.Date               `schema:"-" json:"-"`
 	Timeframe       timeframe.Timeframe         `schema:"timeframe" json:"timeframe" enums:"day,week,month,year" validate:"required"`                                                                                // Период гороскопа
 	PrimaryZodiac   zodiac.Zodiac               `schema:"primary_zodiac" json:"primary_zodiac" enums:"aries,taurus,gemini,cancer,leo,virgo,libra,scorpio,sagittarius,capricorn,aquarius,pisces" validate:"required"` // Знак зодиака, для которого генерируется гороскоп
 	SecondaryZodiac *zodiac.Zodiac              `schema:"secondary_zodiac" json:"secondary_zodiac" enums:"aries,taurus,gemini,cancer,leo,virgo,libra,scorpio,sagittarius,capricorn,aquarius,pisces"`                 // Знак зодиака партнера (для гороскопа на пару)
@@ -21,8 +23,8 @@ type GetHoroscopeReq struct {
 func (r GetHoroscopeReq) Validate() error {
 
 	// Проверяем дату
-	if r.DateFrom.IsZero() {
-		return errors.BadRequest.New("date_from is zero value")
+	if r.Date.IsZero() {
+		return errors.BadRequest.New("date is zero value")
 	}
 
 	// Проверяем таймфрейм

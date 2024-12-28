@@ -21,6 +21,7 @@ var _ HoroscopeService = new(horoscopeService.HoroscopeService)
 
 type HoroscopeService interface {
 	GetHoroscope(context.Context, model.GetHoroscopeReq) (model.Horoscope, error)
+	GetHoroscopePrompt(context.Context, model.GetHoroscopeReq) (model.GetHoroscopePromptRes, error)
 }
 
 // MountHoroscopeEndpoints mounts horoscope endpoints to the router
@@ -36,6 +37,8 @@ func newHoroscopeEndpoint(service HoroscopeService) http.Handler {
 
 	r := chi.NewRouter()
 	r.Method(http.MethodGet, "/", chain.NewChain(e.getHoroscope)) // GET /horoscope
+
+	r.Method(http.MethodGet, "/prompt", chain.NewChain(e.getHoroscopePrompt)) // GET /horoscope/prompt
 
 	return r
 }
