@@ -42,6 +42,34 @@ func (_m *MockHoroscopeService) GetHoroscope(_a0 context.Context, _a1 model.GetH
 	return r0, r1
 }
 
+// GetHoroscopePrompt provides a mock function with given fields: _a0, _a1
+func (_m *MockHoroscopeService) GetHoroscopePrompt(_a0 context.Context, _a1 model.GetHoroscopeReq) (model.GetHoroscopePromptRes, error) {
+	ret := _m.Called(_a0, _a1)
+
+	if len(ret) == 0 {
+		panic("no return value specified for GetHoroscopePrompt")
+	}
+
+	var r0 model.GetHoroscopePromptRes
+	var r1 error
+	if rf, ok := ret.Get(0).(func(context.Context, model.GetHoroscopeReq) (model.GetHoroscopePromptRes, error)); ok {
+		return rf(_a0, _a1)
+	}
+	if rf, ok := ret.Get(0).(func(context.Context, model.GetHoroscopeReq) model.GetHoroscopePromptRes); ok {
+		r0 = rf(_a0, _a1)
+	} else {
+		r0 = ret.Get(0).(model.GetHoroscopePromptRes)
+	}
+
+	if rf, ok := ret.Get(1).(func(context.Context, model.GetHoroscopeReq) error); ok {
+		r1 = rf(_a0, _a1)
+	} else {
+		r1 = ret.Error(1)
+	}
+
+	return r0, r1
+}
+
 // NewMockHoroscopeService creates a new instance of MockHoroscopeService. It also registers a testing interface on the mock and a cleanup function to assert the mocks expectations.
 // The first argument is typically a *testing.T value.
 func NewMockHoroscopeService(t interface {
