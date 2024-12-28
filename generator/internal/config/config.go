@@ -11,15 +11,15 @@ import (
 type Config struct {
 
 	// Адрес для http-сервера
-	HTTP string `env:"LISTEN_HTTP" envDefault:":8080"`
+	HTTP string `env:"LISTEN_HTTP,required"`
 
 	// Данные базы данных
 	Repository postgresql.PostgreSQLConfig
-	DBName     string `env:"DB_NAME"`
+	DBName     string `env:"DB_NAME,required"`
 
-	ChatGPTApiKey string `env:"CHATGPT_APIKEY"`
+	ChatGPTApiKey string `env:"CHATGPT_APIKEY,required"`
 
-	ServiceName string `env:"SERVICE_NAME" envDefault:"zodiac"`
+	ServiceName string `env:"SERVICE_NAME,required"`
 }
 
 // GetConfig возвращает конфигурацию из .env файла

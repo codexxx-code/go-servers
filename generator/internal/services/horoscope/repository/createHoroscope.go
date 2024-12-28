@@ -14,10 +14,14 @@ func (r *HoroscopeRepository) CreateHoroscope(ctx context.Context, req model.Cre
 	return r.db.ExecWithLastInsertID(ctx, sq.
 		Insert(horoscopeDDL.Table).
 		SetMap(map[string]any{
-			horoscopeDDL.ColumnZodiac: req.Zodiac,
-			horoscopeDDL.ColumnDate:   req.Date,
-			horoscopeDDL.ColumnText:   req.Text,
+			horoscopeDDL.ColumnDateFrom:        req.DateFrom,
+			horoscopeDDL.ColumnDateTo:          req.DateTo,
+			horoscopeDDL.ColumnPrimaryZodiac:   req.PrimaryZodiac,
+			horoscopeDDL.ColumnSecondaryZodiac: req.SecondaryZodiac,
+			horoscopeDDL.ColumnLanguage:        req.Language,
+			horoscopeDDL.ColumnTimeframe:       req.Timeframe,
+			horoscopeDDL.ColumnHoroscopeType:   req.HoroscopeType,
+			horoscopeDDL.ColumnText:            req.Text,
 		}),
 	)
-
 }

@@ -1,0 +1,7 @@
+GET {{host}}/horoscope
+    ?date_from=2024-12-11
+    &horoscope_type=single
+    &language=english
+    &primary_zodiac=aries
+    &secondary_zodiac=aries
+    &timeframe=day

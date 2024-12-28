@@ -42,28 +42,26 @@ func (_m *MockHoroscopeRepository) CreateHoroscope(_a0 context.Context, _a1 mode
 	return r0, r1
 }
 
-// GetHoroscopes provides a mock function with given fields: _a0, _a1
-func (_m *MockHoroscopeRepository) GetHoroscopes(_a0 context.Context, _a1 model.GetHoroscopesReq) ([]model.Horoscope, error) {
+// GetHoroscope provides a mock function with given fields: _a0, _a1
+func (_m *MockHoroscopeRepository) GetHoroscope(_a0 context.Context, _a1 model.GetHoroscopeReq) (model.Horoscope, error) {
 	ret := _m.Called(_a0, _a1)
 
 	if len(ret) == 0 {
-		panic("no return value specified for GetHoroscopes")
+		panic("no return value specified for GetHoroscope")
 	}
 
-	var r0 []model.Horoscope
+	var r0 model.Horoscope
 	var r1 error
-	if rf, ok := ret.Get(0).(func(context.Context, model.GetHoroscopesReq) ([]model.Horoscope, error)); ok {
+	if rf, ok := ret.Get(0).(func(context.Context, model.GetHoroscopeReq) (model.Horoscope, error)); ok {
 		return rf(_a0, _a1)
 	}
-	if rf, ok := ret.Get(0).(func(context.Context, model.GetHoroscopesReq) []model.Horoscope); ok {
+	if rf, ok := ret.Get(0).(func(context.Context, model.GetHoroscopeReq) model.Horoscope); ok {
 		r0 = rf(_a0, _a1)
 	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).([]model.Horoscope)
-		}
+		r0 = ret.Get(0).(model.Horoscope)
 	}
 
-	if rf, ok := ret.Get(1).(func(context.Context, model.GetHoroscopesReq) error); ok {
+	if rf, ok := ret.Get(1).(func(context.Context, model.GetHoroscopeReq) error); ok {
 		r1 = rf(_a0, _a1)
 	} else {
 		r1 = ret.Error(1)

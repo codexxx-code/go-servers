@@ -14,6 +14,42 @@ type Date struct {
 	time.Time
 }
 
+func (d Date) GetStartOfWeek() Date {
+	weekday := int(d.Weekday())
+	if weekday == 0 {
+		weekday = 7
+	}
+	return d.AddDate(0, 0, -weekday+1)
+}
+
+func (d Date) GetEndOfWeek() Date {
+	weekday := int(d.Weekday())
+	if weekday == 0 {
+		weekday = 7
+	}
+	return d.AddDate(0, 0, 7-weekday)
+}
+
+func (d Date) GetStartOfMonth() Date {
+	return NewDate(d.Year(), d.Month(), 1)
+}
+
+func (d Date) GetEndOfMonth() Date {
+	return d.GetStartOfMonth().AddDate(0, 1, -1)
+}
+
+func (d Date) GetStartOfYear() Date {
+	return NewDate(d.Year(), time.January, 1)
+}
+
+func (d Date) GetEndOfYear() Date {
+	return NewDate(d.Year(), time.December, 31)
+}
+
+func (d Date) AddDate(years int, months int, days int) Date {
+	return Date{d.Time.AddDate(years, months, days)}
+}
+
 func (d Date) String() string {
 	return d.Format(DateFormat)
 }

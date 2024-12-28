@@ -13,14 +13,13 @@ import (
 
 	"generator/internal/config"
 	_ "generator/internal/docs"
-	"generator/internal/services/generator/ai/chatGPT"
-	generatorService "generator/internal/services/generator/service"
+	"generator/internal/services/generator/neuralNetworks/chatGPT"
 	horoscopeEndpoint "generator/internal/services/horoscope/endpoint"
 	horoscopeRepository "generator/internal/services/horoscope/repository"
 	horoscopeService "generator/internal/services/horoscope/service"
-	promptEndpoint "generator/internal/services/prompt/endpoint"
-	promptRepository "generator/internal/services/prompt/repository"
-	promptService "generator/internal/services/prompt/service"
+	promptTemplateEndpoint "generator/internal/services/promptTemplate/endpoint"
+	promptTemplateRepository "generator/internal/services/promptTemplate/repository"
+	promptTemplateService "generator/internal/services/promptTemplate/service"
 	"generator/migrations"
 	"pkg/database/postgresql"
 	"pkg/http/middleware"
@@ -144,17 +143,16 @@ func run() error {
 	chatGPTService := chatGPT.NewChatGPTService(openai)
 
 	// Регистрируем репозитории
-	promptRepository := promptRepository.NewPromptRepository(postrgreSQL)
+	promptTemplateRepository := promptTemplateRepository.NewPromptTemplateRepository(postrgreSQL)
 	horoscopeRepository := horoscopeRepository.NewHoroscopeRepository(postrgreSQL)
 
 	// Регистрируем сервисы
-	promptService := promptService.NewPromptService(promptRepository)
-	generatorService := generatorService.NewGeneratorService(chatGPTService, promptService)
-	horoscopeService := horoscopeService.NewHoroscopeService(horoscopeRepository, generatorService)
+	promptTemplateService := promptTemplateService.NewPromptTemplateService(promptTemplateRepository)
+	horoscopeService := horoscopeService.NewHoroscopeService(horoscopeRepository, chatGPTService, promptTemplateService)
 
 	r := router.NewRouter()
 	horoscopeEndpoint.MountHoroscopeEndpoints(r, horoscopeService)
-	promptEndpoint.MountPromptEndpoints(r, promptService)
+	promptTemplateEndpoint.MountPromptTemplateEndpoints(r, promptTemplateService)
 	r.Mount("/swagger", httpSwagger.WrapHandler)
 
 	server, err := server.GetDefaultServer(cfg.HTTP, r)

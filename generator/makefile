@@ -32,11 +32,11 @@ test: mockery
 
 deploy-check: test lint check-swagger
 
-migration-create-file:
-	goose -dir migrations/pgsql create init sql
+migration-pg-create-file: # Создать файл миграции
+	goose -dir migrations/pgsql create rename_me sql
 
-migration-up:
-	goose -dir migrations/pgsql up
+migration-pg-status: # Показать статус миграций
+	goose -dir migrations/pgsql postgres "postgres://postgres:password@127.0.0.1:5432/generator" status
 
-migration-down:
-	goose -dir migrations/pgsql down
+migration-pg-reset: # Сбросить все миграции
+	goose -dir migrations/pgsql postgres "postgres://postgres:password@127.0.0.1:5432/generator" reset
