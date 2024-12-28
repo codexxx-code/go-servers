@@ -1,2 +1,2 @@
-GET http://localhost:8080/ebay/category
+GET http://localhost:8080/ebay/categories
     ?id=38

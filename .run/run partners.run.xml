@@ -1,6 +1,6 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="run partners" type="GoApplicationRunConfiguration" factoryName="Go Application">
-    <module name="zodiac" />
+    <module name="go-servers" />
     <working_directory value="$PROJECT_DIR$/partners" />
     <parameters value="-log-format=text -env-mode=local" />
     <envs>
@@ -17,8 +17,8 @@
       <ENTRIES>
         <ENTRY IS_ENABLED="true" PARSER="runconfig" IS_EXECUTABLE="false" />
         <ENTRY IS_ENABLED="false" PARSER="env" IS_EXECUTABLE="false" PATH="./partners/.env" />
-        <ENTRY IS_ENABLED="false" PARSER="env" IS_EXECUTABLE="false" PATH="partners/.env" />
-        <ENTRY IS_ENABLED="true" PARSER="env" IS_EXECUTABLE="false" PATH=".env" />
+        <ENTRY IS_ENABLED="true" PARSER="env" IS_EXECUTABLE="false" PATH="partners/.env" />
+        <ENTRY IS_ENABLED="false" PARSER="env" IS_EXECUTABLE="false" PATH=".env" />
       </ENTRIES>
     </EXTENSION>
     <kind value="PACKAGE" />
