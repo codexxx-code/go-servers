@@ -10,18 +10,18 @@ import (
 type Config struct {
 
 	// Адрес для http-сервера
-	HTTP string `env:"LISTEN_HTTP" envDefault:":8080"`
+	HTTP string `env:"LISTEN_HTTP,required"`
 
 	Ebay EbayConfig
 
-	ServiceName string `env:"SERVICE_NAME" envDefault:"zodiac"`
+	ServiceName string `env:"SERVICE_NAME,required"`
 }
 
 type EbayConfig struct {
-	ClientID     string `env:"EBAY_CLIENT_ID"`
-	ClientSecret string `env:"EBAY_CLIENT_SECRET"`
-	IsSandbox    bool   `env:"EBAY_IS_SANDBOX"`
-	CampaignID   string `env:"EBAY_CAMPAIGN_ID"`
+	ClientID     string `env:"EBAY_CLIENT_ID,required"`
+	ClientSecret string `env:"EBAY_CLIENT_SECRET,required"`
+	IsSandbox    bool   `env:"EBAY_IS_SANDBOX,required"`
+	CampaignID   string `env:"EBAY_CAMPAIGN_ID,required"`
 }
 
 // GetConfig возвращает конфигурацию из .env файла

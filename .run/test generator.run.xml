@@ -1,6 +1,6 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="test generator" type="GoTestRunConfiguration" factoryName="Go Test">
-    <module name="zodiac" />
+    <module name="go-servers" />
     <working_directory value="$PROJECT_DIR$/generator" />
     <EXTENSION ID="net.ashald.envfile">
       <option name="IS_ENABLED" value="true" />
