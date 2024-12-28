@@ -12,5 +12,5 @@ CREATE TABLE zodiac.prompts (
 
 -- +goose Down
 -- +goose StatementBegin
-DROP TABLE zodiac.prompts;
+DROP TABLE IF EXISTS zodiac.prompts;
 -- +goose StatementEnd

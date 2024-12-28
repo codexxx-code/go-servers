@@ -1,0 +1,6 @@
+PATCH {{host}}/promptTemplate
+
+{
+	"case": "createHoroscope",
+	"template": "Hello, create for me please horoscope with following parameters:\n- Must be for one {{ .Timeframe }}\n- Start date of horoscope is {{ .DateFrom.Format \"02 January 2006\" }} and end date is {{ .DateTo.Format \"02 January 2006\" }}\n{{- if eq .Type \"single\" }}\n- Must be for {{ .PrimaryZodiac }} zodiac sign\n{{ else }}\n- It must be horoscope for compatibility between {{ .PrimaryZodiac }} and {{ .SecondaryZodiac }} zodiac signs\n{{ end }}\n- Language of horoscope is {{ .Language }}\nIt horoscope will be used on special site, so make it for just text without any additional information. I need only text of horoscope."
+}

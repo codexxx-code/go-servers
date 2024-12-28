@@ -21,7 +21,5 @@ ALTER TABLE zodiac.prompts_copy RENAME TO prompts;
 
 -- +goose Down
 -- +goose StatementBegin
-
--- Так делать нельзя)))
-
+DROP TABLE IF EXISTS zodiac.prompts;
 -- +goose StatementEnd

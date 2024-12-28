@@ -14,26 +14,26 @@ type MockGeneratorService struct {
 	mock.Mock
 }
 
-// GenerateDailyHoroscope provides a mock function with given fields: ctx, req
-func (_m *MockGeneratorService) GenerateDailyHoroscope(ctx context.Context, req model.GenerateDailyHoroscopeReq) (model.GenerateDailyHoroscopeRes, error) {
+// Generate provides a mock function with given fields: ctx, req
+func (_m *MockGeneratorService) Generate(ctx context.Context, req model.GenerateReq) (model.GenerateRes, error) {
 	ret := _m.Called(ctx, req)
 
 	if len(ret) == 0 {
-		panic("no return value specified for GenerateDailyHoroscope")
+		panic("no return value specified for Generate")
 	}
 
-	var r0 model.GenerateDailyHoroscopeRes
+	var r0 model.GenerateRes
 	var r1 error
-	if rf, ok := ret.Get(0).(func(context.Context, model.GenerateDailyHoroscopeReq) (model.GenerateDailyHoroscopeRes, error)); ok {
+	if rf, ok := ret.Get(0).(func(context.Context, model.GenerateReq) (model.GenerateRes, error)); ok {
 		return rf(ctx, req)
 	}
-	if rf, ok := ret.Get(0).(func(context.Context, model.GenerateDailyHoroscopeReq) model.GenerateDailyHoroscopeRes); ok {
+	if rf, ok := ret.Get(0).(func(context.Context, model.GenerateReq) model.GenerateRes); ok {
 		r0 = rf(ctx, req)
 	} else {
-		r0 = ret.Get(0).(model.GenerateDailyHoroscopeRes)
+		r0 = ret.Get(0).(model.GenerateRes)
 	}
 
-	if rf, ok := ret.Get(1).(func(context.Context, model.GenerateDailyHoroscopeReq) error); ok {
+	if rf, ok := ret.Get(1).(func(context.Context, model.GenerateReq) error); ok {
 		r1 = rf(ctx, req)
 	} else {
 		r1 = ret.Error(1)

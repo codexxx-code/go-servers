@@ -8,4 +8,6 @@ ALTER TABLE horoscope.prompts SET SCHEMA generator;
 
 -- +goose Down
 -- +goose StatementBegin
+DROP SCHEMA IF EXISTS horoscope CASCADE;
+DROP SCHEMA IF EXISTS generator CASCADE;
 -- +goose StatementEnd
