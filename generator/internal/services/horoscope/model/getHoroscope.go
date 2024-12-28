@@ -18,19 +18,6 @@ type GetHoroscopeReq struct {
 	HoroscopeType   horoscopeType.HoroscopeType `schema:"horoscope_type" json:"horoscope_type" enums:"single,couple" validate:"required"`                                                                            // Тип гороскопа. Парный или для одного знака
 }
 
-func (r GetHoroscopeReq) ConvertToHoroscope() Horoscope {
-	return Horoscope{
-		ID:              0,
-		DateFrom:        r.DateFrom,
-		PrimaryZodiac:   r.PrimaryZodiac,
-		SecondaryZodiac: r.SecondaryZodiac,
-		Language:        r.Language,
-		Timeframe:       r.Timeframe,
-		HoroscopeType:   r.HoroscopeType,
-		Text:            "",
-	}
-}
-
 func (r GetHoroscopeReq) Validate() error {
 
 	// Проверяем дату
