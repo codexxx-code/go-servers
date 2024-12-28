@@ -6,9 +6,9 @@
     <envs>
       <env name="DB_NAME" value="generator" />
       <env name="LISTEN_HTTP" value="localhost:8080" />
-      <env name="PGSQL_HOST" value="localhost:5433" />
+      <env name="PGSQL_HOST" value="localhost:5432" />
       <env name="PGSQL_PASSWORD" value="password" />
-      <env name="PGSQL_USER" value="user" />
+      <env name="PGSQL_USER" value="postgres" />
       <env name="SERVICE_NAME" value="generator" />
     </envs>
     <EXTENSION ID="net.ashald.envfile">

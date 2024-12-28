@@ -20,8 +20,7 @@ type endpoint struct {
 var _ HoroscopeService = new(horoscopeService.HoroscopeService)
 
 type HoroscopeService interface {
-	GetHoroscopes(context.Context, model.GetHoroscopesReq) ([]model.Horoscope, error)
-	GetHoroscopeWithGeneration(context.Context, model.GetHoroscopeWithGenerationReq) (model.Horoscope, error)
+	GetHoroscope(context.Context, model.GetHoroscopeReq) (model.Horoscope, error)
 }
 
 // MountHoroscopeEndpoints mounts horoscope endpoints to the router
@@ -36,8 +35,7 @@ func newHoroscopeEndpoint(service HoroscopeService) http.Handler {
 	}
 
 	r := chi.NewRouter()
-	r.Method(http.MethodGet, "/", chain.NewChain(e.getHoroscopes))                            // GET /horoscope
-	r.Method(http.MethodGet, "/withGeneration", chain.NewChain(e.getHoroscopeWithGeneration)) // GET /horoscope/withGeneration
+	r.Method(http.MethodGet, "/", chain.NewChain(e.getHoroscope)) // GET /horoscope
 
 	return r
 }

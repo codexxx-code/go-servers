@@ -1,13 +1,20 @@
 package model
 
 import (
-	"generator/internal/services/horoscope/model/zodiac"
-
+	"generator/internal/enum/horoscopeType"
+	"generator/internal/enum/language"
+	"generator/internal/enum/timeframe"
+	"generator/internal/enum/zodiac"
 	"pkg/datetime"
 )
 
 type CreateHoroscopeReq struct {
-	Date   datetime.Date `db:"date" json:"date"`
-	Zodiac zodiac.Zodiac `db:"zodiac" json:"zodiac" enums:"aries,taurus,gemini,cancer,leo,virgo,libra,scorpio,sagittarius,capricorn,aquarius,pisces"`
-	Text   string        `db:"text" json:"text"`
+	DateFrom        datetime.Date               // Дата гороскопа (относительно которой считается период)
+	DateTo          datetime.Date               // Дата окончания периода гороскопа (верхняя граница)
+	PrimaryZodiac   zodiac.Zodiac               // Знак зодиака, для которого генерируется гороскоп
+	SecondaryZodiac *zodiac.Zodiac              // Знак зодиака партнера (для гороскопа на пару)
+	Language        language.Language           // Язык текста гороскопа
+	Timeframe       timeframe.Timeframe         // Период гороскопа
+	HoroscopeType   horoscopeType.HoroscopeType // Тип гороскопа. Парный или для одного знака
+	Text            string                      // Текст гороскопа
 }

@@ -35,5 +35,5 @@ CREATE TABLE zodiac.forecasts (
 
 -- +goose Down
 -- +goose StatementBegin
-DROP SCHEMA zodiac;
+DROP SCHEMA IF EXISTS zodiac;
 -- +goose StatementEnd
