@@ -9,3 +9,6 @@ go-mod-tidy-all:
 	cd generator; go mod tidy
 	cd partners; go mod tidy
 	cd pkg; go mod tidy
+
+update-pkg:
+	cd pkg; git pull origin main
