@@ -1,0 +1,17 @@
+name: prod exchange deploy
+
+on:
+  push:
+    tags:
+      - v*
+    paths:
+      - 'exchange/**'
+
+jobs:
+  general-deploy-pipeline:
+    uses: ./.github/workflows/reusable-deploy.yml
+    with:
+      service_port: 8084
+      service_name: exchange
+      command_args: -log-format=text -env-mode=prod
+    secrets: inherit

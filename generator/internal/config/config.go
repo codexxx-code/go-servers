@@ -3,7 +3,7 @@ package config
 import (
 	"github.com/caarlos0/env/v11"
 
-	"pkg/database/postgresql"
+	"pkg/database/pgsql"
 	"pkg/errors"
 )
 
@@ -14,8 +14,8 @@ type Config struct {
 	HTTP string `env:"LISTEN_HTTP,required"`
 
 	// Данные базы данных
-	Repository postgresql.PostgreSQLConfig
-	DBName     string `env:"DB_NAME,required"`
+	Pgsql  pgsql.PostgreSQLConfig
+	DBName string `env:"DB_NAME,required"`
 
 	ChatGPTApiKey string `env:"CHATGPT_APIKEY,required"`
 

@@ -1,0 +1,223 @@
+POST {{host}}/rtb/test
+
+{
+	"id": "2TcNLWTsCIS3NfY1ypuSRnkV3Oc7gDhC",
+	"imp": [
+		{
+			"id": "k5vyW2aUUffEtBRFLdwR3HADIJVsomJu",
+			"metric": null,
+			"banner": null,
+			"video": null,
+			"audio": null,
+			"native": null,
+			"pmp": null,
+			"displaymanager": "",
+			"displaymanagerver": "",
+			"instl": 1,
+			"tagid": "0",
+			"bidfloor": 0.01,
+			"bidfloorcur": "USD",
+			"clickbrowser": 0,
+			"secure": 1,
+			"iframebuster": null,
+			"ext": {
+				"type": "pop",
+				"subid": "16517791",
+				"sub_id": "16517791"
+			}
+		}
+	],
+	"site": {
+		"id": "0000",
+		"name": "",
+		"domain": "",
+		"cat": null,
+		"sectioncat": null,
+		"pagecat": null,
+		"privacypolicy": 1,
+		"publisher": {
+			"id": "72415",
+			"name": "",
+			"cat": null,
+			"domain": ""
+		},
+		"content": null,
+		"keywords": "",
+		"ext": {
+			"octo:goal_id": null,
+			"octo:trusted": false,
+			"octo:zone_id": "0",
+			"octo:webmaster_id": "72415",
+			"octo:exclude_goal_id": [
+				1
+			],
+			"octo:site_id": "6056580779247395259",
+			"idzone": 16517791
+		},
+		"page": "pantscraper.com",
+		"ref": "",
+		"search": "",
+		"mobile": 0
+	},
+	"app": null,
+	"device": {
+		"ua": "Mozilla/5.0 (Linux; arm; Android 9; Hot 30) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.6613.111 YaBrowser/24.10.3.111.00 SA/3 Mobile Safari/537.36",
+		"geo": {
+			"lat": 0,
+			"lon": 0,
+			"type": 0,
+			"accuracy": 0,
+			"lastfix": 0,
+			"ipservice": 0,
+			"country": "RU",
+			"region": "",
+			"regionfips104": "",
+			"metro": "",
+			"city": "",
+			"zip": "",
+			"utcoffset": 0
+		},
+		"dnt": 0,
+		"lmt": 0,
+		"ip": "82.140.216.88",
+		"ipv6": "",
+		"devicetype": 4,
+		"make": "Infinix",
+		"model": "HOT 30",
+		"os": "Android",
+		"osv": "9",
+		"hwv": "",
+		"h": 0,
+		"w": 0,
+		"ppi": 0,
+		"pxratio": 0,
+		"js": 1,
+		"geofetch": 0,
+		"flashver": "",
+		"language": "ru",
+		"carrier": "0",
+		"mccmnc": "",
+		"connectiontype": 0,
+		"ifa": "",
+		"didsha1": "",
+		"didmd5": "",
+		"dpidsha1": "",
+		"dpidmd5": "",
+		"macsha1": "",
+		"macmd5": "",
+		"ext": {
+			"accept_language": "RU",
+			"remote_addr": "82.140.216.88",
+			"octo:country_id": "2017370",
+			"octo:region_id": "480041",
+			"octo:device_type": "SmartPhone",
+			"octo:os_version": "9",
+			"x_forwarded_for": "82.140.216.88",
+			"octo:city_id": "480060",
+			"octo:operator_id": "0",
+			"octo:device_family": "HOT 30",
+			"octo:browser_version": "128",
+			"octo:browser": "Chrome",
+			"octo:os": "Android"
+		}
+	},
+	"user": {
+		"id": "8629e41d5626c75d77840e8674676cc4",
+		"buyeruid": "",
+		"yob": 0,
+		"gender": "",
+		"keywords": "",
+		"customdata": "",
+		"geo": {
+			"lat": 0,
+			"lon": 0,
+			"type": 0,
+			"accuracy": 0,
+			"lastfix": 0,
+			"ipservice": 0,
+			"country": "RU",
+			"region": "",
+			"regionfips104": "",
+			"metro": "",
+			"city": "",
+			"zip": "",
+			"utcoffset": 0
+		},
+		"data": null,
+		"ext": {
+			"octo:is_proxy": false,
+			"octo:is_hosting": false,
+			"octo:is_vpn": false,
+			"octo:mnc_id": "",
+			"octo:mnc_country": "",
+			"octo:mnc_name": ""
+		}
+	},
+	"test": 0,
+	"at": 1,
+	"tmax": 550000,
+	"wseat": null,
+	"bseat": null,
+	"allimps": 0,
+	"cur": [
+		"USD"
+	],
+	"wlang": null,
+	"bcat": null,
+	"badv": null,
+	"bapp": null,
+	"source": null,
+	"regs": null,
+	"ext": {
+		"octo:acat": null,
+		"octo:auction_number": 5,
+		"octo:click_number": 5,
+		"octo:dsp_provider_id": "67",
+		"octo:is_alternative": false,
+		"octo:mode": 1,
+		"ssp-slug": "octoclick"
+	}
+}
+
+<> 2024-07-29T170858.200.json
+<> 2024-07-29T170709.200.json
+<> 2024-07-29T170512.200.json
+<> 2024-07-29T170511.200.json
+<> 2024-07-29T170504.200.json
+<> 2024-07-29T170432.200.json
+<> 2024-07-29T170220.200.json
+<> 2024-07-29T170105.500.json
+<> 2024-07-29T165835.200.json
+<> 2024-07-29T165710.200.json
+<> 2024-07-29T165135.200.json
+<> 2024-07-29T164956.200.json
+<> 2024-07-29T164429.200.json
+<> 2024-07-29T164027.200.json
+<> 2024-07-29T163857.500.json
+<> 2024-07-29T162730.200.json
+<> 2024-07-29T161925.200.json
+<> 2024-07-29T161916.200.json
+<> 2024-07-29T161637.200.json
+<> 2024-07-29T155922.200.json
+<> 2024-07-29T153752.200.json
+<> 2024-07-26T185312.500.json
+<> 2024-07-26T185222.200.json
+<> 2024-07-26T185027.500.json
+<> 2024-07-26T184931.200.json
+<> 2024-07-26T184732.500.json
+<> 2024-07-26T184714.500.json
+<> 2024-07-26T184249.500.json
+<> 2024-07-26T184057.200.json
+<> 2024-07-26T182852.500.json
+<> 2024-07-26T182506.500.json
+<> 2024-07-26T182305.500.json
+<> 2024-07-26T181700.500.json
+<> 2024-07-26T180031.500.json
+<> 2024-07-26T180009.500.json
+<> 2024-07-26T175831.500.json
+<> 2024-07-26T175659.500.txt
+<> 2024-07-26T175607.500.txt
+<> 2024-07-26T175357.500.txt
+<> 2024-07-26T175057.500.txt
+<> 2024-07-26T174940.500.txt
+<> 2024-07-24T201649.500.json

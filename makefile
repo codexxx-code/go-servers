@@ -10,3 +10,6 @@ go-mod-tidy-all:
 
 update-pkg:
 	cd pkg; git pull origin main
+
+update-linter:
+	brew upgrade golangci-lint

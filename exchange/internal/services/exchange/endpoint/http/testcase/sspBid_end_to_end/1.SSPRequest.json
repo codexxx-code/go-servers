@@ -1,0 +1,46 @@
+{
+	"id": "50c3d53cc39690b5febd02db6b28b206",
+	"imp": [
+		{
+			"id": "1",
+			"bidfloor": 0.1,
+			"bidfloorcur": "USD",
+			"ext": {"ad_type":40,"limit":1}
+		}
+	],
+	"site": {
+		"id": "1511441620319572",
+		"domain": "bco3h97c.xyz",
+		"cat": [
+			"IAB24"
+		],
+		"pagecat": [
+			"IAB24"
+		],
+		"publisher": {
+			"id": "51026",
+			"name": "bco3h97c.xyz"
+		},
+		"page": "http://bco3h97c.xyz?"
+	},
+	"device": {
+		"ua": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Mobile Safari/537.36",
+		"geo": {
+			"type": 2,
+			"ipservice": 3,
+			"country": "IN"
+		},
+		"ip": "106.222.213.16",
+		"devicetype": 4,
+		"language": "en"
+	},
+	"user": {
+		"id": "f3daf08bcb32a4cbdd5fe89b5acf38d5"
+	},
+	"at": 1,
+	"tmax": 147,
+	"cur": [
+		"USD"
+	],
+	"ext": {"ssp-slug":"kadam"}
+}

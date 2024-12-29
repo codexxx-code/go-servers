@@ -5,9 +5,6 @@ check-swagger:
 	swag init -o tmp -d internal --parseDependency --parseInternal
 	rm -rf tmp
 
-update-linter:
-	brew upgrade golangci-lint
-
 lint:
 	golangci-lint run -v
 

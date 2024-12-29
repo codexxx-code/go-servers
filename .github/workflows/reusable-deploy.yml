@@ -15,6 +15,9 @@ on:
       command_args:
         required: false
         type: string
+      adapt_dockerfile:
+        required: false
+        type: boolean
 
 env:
   REGISTRY: ghcr.io
@@ -35,6 +38,7 @@ jobs:
 
   # Генерируем Dockerfile
   build-dockerfile:
+    if: ${{ inputs.adapt_dockerfile == 'false' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -43,6 +47,19 @@ jobs:
         uses: ./.github/actions/dockerfile-build
         with:
           project_name: ${{ inputs.service_name }}
+          service_port: ${{ inputs.service_port }}
+          test_suffix: ${{ inputs.test_suffix }}
+
+  # Генерируем Dockerfile
+  adapt-dockerfile:
+    if: ${{ inputs.adapt_dockerfile == 'true' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Dockerfile build
+        uses: ./.github/actions/dockerfile-adapt
+        with:
           service_port: ${{ inputs.service_port }}
           test_suffix: ${{ inputs.test_suffix }}
 

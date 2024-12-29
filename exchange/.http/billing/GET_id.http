@@ -1,0 +1,6 @@
+GET {{host}}/billing/34433121-c94b-43cf-b5d5-8d06606f9580?id_type=request&price=${AUCTION_PRICE}&ssp_slug=test&url_type=nurl&bid_price=2.6341463414634144
+
+<> 2024-07-29T171204.406.json
+<> 2024-07-26T171429.500.txt
+<> 2024-07-26T171120.500.txt
+<> 2024-07-26T171105.500.txt

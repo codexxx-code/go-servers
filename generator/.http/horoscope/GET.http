@@ -1,7 +1,7 @@
 GET {{host}}/horoscope
-    ?date=2024-12-11
-    &horoscope_type=single
+    ?date=2025-12-11
+    &horoscope_type=couple
     &language=russian
-    &primary_zodiac=aries
-    &secondary_zodiac=aries
-    &timeframe=day
+    &primary_zodiac=sagittarius
+    &secondary_zodiac=pisces
+    &timeframe=year

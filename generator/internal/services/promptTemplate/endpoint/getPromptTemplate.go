@@ -22,7 +22,7 @@ func (e *endpoint) getPromptTemplates(ctx context.Context, r *http.Request) (any
 	var req model.GetPromptTemplatesReq
 
 	// Декодируем запрос
-	if err := decoder.Decoder(ctx, r, &req, decoder.DecodeSchema); err != nil {
+	if err := decoder.Decode(ctx, r, &req, decoder.DecodeSchema); err != nil {
 		return nil, err
 	}
 

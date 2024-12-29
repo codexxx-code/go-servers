@@ -1,0 +1,47 @@
+1.SSPRequest.json
+  - 1 кликандер импрешен
+  - RUB
+
+1.DSPResponse-1.json
+  - 1 бид
+  - RUB
+1.DSPResponse-2.json
+  - 1 бид
+  - RUB
+1.DSPResponse-3.json
+  - 1 бид
+  - USD
+1.DSPResponse-4.json
+  - 1 бид
+  - USD
+
+2.SSPRequest.json
+  - 1 баннерный импрешен
+  - USD
+
+2.DSPResponse-1.json
+  - 1 бид
+  - RUB
+2.DSPResponse-2.json
+  - 1 бид
+  - USD
+
+3.SSPRequest.json
+  - 3 баннерных импрешена
+  - USD
+
+3.DSPResponse-1.json
+  - 4 бида
+  - RUB
+3.DSPResponse-2.json
+  - 1 бид
+  - USD
+3.DSPResponse-3.json
+  - 1 бид
+  - USD
+3.DSPResponse-4.json
+  - 1 бид
+  - EUR
+3.DSPResponse-5.json
+  - 1 бид
+  - EUR

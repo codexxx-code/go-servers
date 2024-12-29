@@ -1,0 +1,29 @@
+name: "dockerfile-adapt"
+description: "Open macros for existed dockerfile in root project directory"
+inputs:
+  project_name:
+    required: true
+    description: "Project name"
+  test_suffix:
+    required: false
+    description: "Suffix for .env file"
+runs:
+  using: composite
+  steps:
+    - name: Sed the template
+      shell: bash
+      run: |
+        sed \
+          -e "s|@{project_name}|${{ inputs.project_name }}|g" \
+          -e "s|@{build_number}|${{ github.run_id }}|g" \
+          -e "s|@{test_suffix}|${{ inputs.test_suffix }}|g" \
+          -e "s|@{commit_hash}|${{ github.sha }}|g" \
+          -e "s|@{version_number}|${GITHUB_REF##*/}|g" \
+          < "Dockerfile" \
+          > "Dockerfile"
+
+    - name: Upload Dockerfile to artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: Dockerfile
+        path: Dockerfile

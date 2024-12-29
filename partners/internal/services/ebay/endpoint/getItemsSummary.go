@@ -22,7 +22,7 @@ func (e *endpoint) getItemsSummary(ctx context.Context, r *http.Request) (any, e
 	var req model.GetItemsSummaryReq
 
 	// Декодируем запрос
-	if err := decoder.Decoder(ctx, r, &req, decoder.DecodeSchema); err != nil {
+	if err := decoder.Decode(ctx, r, &req, decoder.DecodeSchema); err != nil {
 		return nil, err
 	}
 

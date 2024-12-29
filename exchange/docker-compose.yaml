@@ -1,0 +1,147 @@
+### Стенд для локальной разработки
+version: '3'
+
+services:
+
+  ########## KAFKA ##########
+
+  codex-zookeeper:
+    image: docker.io/bitnami/zookeeper:3.8
+    restart: always
+    volumes:
+      - "codex-zookeeper_data:/bitnami"
+    environment:
+      - ALLOW_ANONYMOUS_LOGIN=yes
+
+
+  codex-kafka:
+    image: docker.io/bitnami/kafka:3.1
+    restart: always
+    ports:
+      - "9092:9092"
+      - "9093:9093"
+    volumes:
+      - "codex-kafka_data:/bitnami"
+    environment:
+      - KAFKA_CFG_ZOOKEEPER_CONNECT=codex-zookeeper:2181
+      - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=CLIENT:PLAINTEXT,EXTERNAL:PLAINTEXT
+      - KAFKA_CFG_LISTENERS=CLIENT://:9092,EXTERNAL://:9093
+      - KAFKA_CFG_ADVERTISED_LISTENERS=CLIENT://codex-kafka:9092,EXTERNAL://localhost:9093
+      - KAFKA_CFG_INTER_BROKER_LISTENER_NAME=CLIENT
+      - ALLOW_PLAINTEXT_LISTENER=yes
+    depends_on:
+      - codex-zookeeper
+
+
+  codex-kafka_ui:
+    image: provectuslabs/kafka-ui
+    container_name: codex-kafka-ui
+    ports:
+      - "8088:8080"
+    restart: always
+    environment:
+      - KAFKA_CLUSTERS_0_NAME=local
+      - KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS=codex-kafka:9092
+      - KAFKA_CLUSTERS_0_ZOOKEEPER=codex-zookeeper:2181
+    depends_on:
+      - codex-kafka
+
+
+  ########## MONGO ##########
+
+  codex-mongo:
+    image: mongo:5.0
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: user
+      MONGO_INITDB_ROOT_PASSWORD: password
+    ports:
+      - "27019:27017"
+    networks:
+      codex:
+        ipv4_address: 10.22.0.4
+
+  ########## REDIS ##########
+
+  codex-redis-master:
+    image: 'bitnami/redis:latest'
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+      - REDIS_REPLICATION_MODE=master
+      - REDIS_REPLICA_IP=${REDIS_EXTERNAL_IP}
+    ports:
+      - '6379:6379'
+    networks:
+      codex:
+        ipv4_address: 10.22.0.5
+
+  codex-redis-slave:
+    image: 'bitnami/redis:latest'
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+      - REDIS_REPLICATION_MODE=slave
+      - REDIS_MASTER_HOST=${REDIS_EXTERNAL_IP}
+      - REDIS_REPLICA_IP=${REDIS_EXTERNAL_IP}
+      - REDIS_REPLICA_PORT=6380
+      - REDIS_PORT_NUMBER=6380
+    depends_on:
+      - codex-redis-master
+    ports:
+      - '6380:6380'
+    networks:
+      codex:
+        ipv4_address: 10.22.0.6
+
+  codex-redis-sentinel:
+    image: 'bitnami/redis-sentinel:latest'
+    environment:
+      - REDIS_MASTER_HOST=${REDIS_EXTERNAL_IP}
+      - REDIS_SENTINEL_QUORUM=1
+    depends_on:
+      - codex-redis-master
+      - codex-redis-slave
+    ports:
+      - '26379:26379'
+    networks:
+      codex:
+        ipv4_address: 10.22.0.7
+
+  ########## CLICKHOUSE ##########
+
+  codex-clickhouse:
+    image: clickhouse/clickhouse-server
+    environment:
+      CLICKHOUSE_USER: user
+      CLICKHOUSE_PASSWORD: password
+    ports:
+      - "9003:9000"
+      - "8126:8123"
+    depends_on:
+      - codex-kafka
+
+  ########## POSTGRES ##########
+
+  codex-postgres:
+    image: wodby/postgres:13
+    stop_grace_period: 30s
+    environment:
+      POSTGRES_MAX_CONNECTIONS: 1000
+      POSTGRES_PASSWORD: password
+      POSTGRES_USER: user
+      POSTGRES_DB: db
+    ports:
+      - "5433:5432"
+    networks:
+      codex:
+        ipv4_address: 10.22.0.9
+
+networks:
+  codex:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 10.22.0.0/16
+
+volumes:
+  codex-kafka_data:
+  codex-zookeeper_data:

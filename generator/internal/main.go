@@ -21,7 +21,7 @@ import (
 	promptTemplateRepository "generator/internal/services/promptTemplate/repository"
 	promptTemplateService "generator/internal/services/promptTemplate/service"
 	"generator/migrations"
-	"pkg/database/postgresql"
+	"pkg/database/pgsql"
 	"pkg/http/middleware"
 	"pkg/http/router"
 	"pkg/http/server"
@@ -117,7 +117,7 @@ func run() error {
 
 	// Подключаемся к базе данных
 	log.Info(ctx, "Подключаемся к БД")
-	postrgreSQL, err := postgresql.NewClientSQL(cfg.Repository, cfg.DBName)
+	postrgreSQL, err := pgsql.NewClientPgsql(cfg.Pgsql)
 	if err != nil {
 		return err
 	}
