@@ -21,7 +21,7 @@ func (e *endpoint) getCategories(ctx context.Context, r *http.Request) (any, err
 	var req model.GetCategoriesReq
 
 	// Декодируем запрос
-	if err := decoder.Decoder(ctx, r, &req, decoder.DecodeSchema); err != nil {
+	if err := decoder.Decode(ctx, r, &req, decoder.DecodeSchema); err != nil {
 		return nil, err
 	}
 

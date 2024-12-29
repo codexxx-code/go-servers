@@ -21,7 +21,7 @@ func (e *endpoint) getBreadcrumbs(ctx context.Context, r *http.Request) (any, er
 	var req model.GetBreadcrumbsReq
 
 	// Декодируем запрос
-	if err := decoder.Decoder(ctx, r, &req, decoder.DecodeSchema); err != nil {
+	if err := decoder.Decode(ctx, r, &req, decoder.DecodeSchema); err != nil {
 		return nil, err
 	}
 

@@ -1,0 +1,76 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="run exchange" type="GoApplicationRunConfiguration" factoryName="Go Application">
+    <module name="go-servers" />
+    <working_directory value="$PROJECT_DIR$/exchange" />
+    <parameters value="-log-format=text -env-mode=local" />
+    <envs>
+      <env name="AUTH_ACCESS_TOKEN_TTL" value="1h" />
+      <env name="AUTH_GENERAL_SALT" value="1234" />
+      <env name="AUTH_REFRESH_TOKEN_TTL" value="24h" />
+      <env name="AUTH_ROOT_ADMIN_LOGIN" value="root_ssp@mail.ru" />
+      <env name="AUTH_ROOT_ADMIN_PASSWORD" value="root_ssp" />
+      <env name="AUTH_SIGNING_KEY" value="1234" />
+      <env name="CLICKHOUSE_DATABASE" value="default" />
+      <env name="CLICKHOUSE_HOST" value="localhost:9003" />
+      <env name="CLICKHOUSE_KAFKA_BOOTSTRAP_SERVERS" value="kafka:9092" />
+      <env name="CLICKHOUSE_KAFKA_CONSUMER_GROUP" value="default" />
+      <env name="CLICKHOUSE_KAFKA_NUM_CONSUMERS" value="10" />
+      <env name="CLICKHOUSE_PASSWORD" value="password" />
+      <env name="CLICKHOUSE_USER" value="user" />
+      <env name="ENV" value="local" />
+      <env name="FIBER_SERVER_IDLE_TIMEOUT" value="60s" />
+      <env name="FIBER_SERVER_PROXY_HEADER" value="X-Forwarded-For" />
+      <env name="FIBER_SERVER_READ_TIMEOUT" value="15s" />
+      <env name="FIBER_SERVER_REST_PORT" value="8080" />
+      <env name="FIBER_SERVER_TRUSTED_PROXIES" value="127.0.0.1" />
+      <env name="FIBER_SERVER_TRUSTED_PROXY_CHECK" value="true" />
+      <env name="FIBER_SERVER_WRITE_TIMEOUT" value="30s" />
+      <env name="GEO_LITE_FILE_PATH" value="GeoLite2-City.mmdb" />
+      <env name="HOST" value="codexxx.tech" />
+      <env name="IS_SEND_NO_CONTENT_FOR_SUCCESS_RESPONSE" value="false" />
+      <env name="IS_SEND_NO_CONTENT_INSTEAD_ERRORS_IN_RESPONSE" value="false" />
+      <env name="KAFKA_BOOTSTRAP_AUTH" value="false" />
+      <env name="KAFKA_BOOTSTRAP_PASSWORD" value="pass" />
+      <env name="KAFKA_BOOTSTRAP_SERVERS" value="localhost:9093" />
+      <env name="KAFKA_BOOTSTRAP_USER" value="user" />
+      <env name="MONGO_CONNECTION_URI" value="mongodb://user:password@127.0.0.1:27019" />
+      <env name="MONGO_DATABASE" value="mongo" />
+      <env name="PGSQL_DATABASE" value="db" />
+      <env name="PGSQL_HOST" value="localhost:5433" />
+      <env name="PGSQL_PASSWORD" value="password" />
+      <env name="PGSQL_USER" value="user" />
+      <env name="QUEUE_TOPIC_ANALYTIC_DSP_BILLINGS_TOPIC_NAME" value="analytic_dsp_billings" />
+      <env name="QUEUE_TOPIC_ANALYTIC_DSP_TO_EXCHANGE_RESPONSES_TOPIC_NAME" value="analytic_dsp_to_exchange_responses" />
+      <env name="QUEUE_TOPIC_ANALYTIC_EXCHANGE_TO_DSP_REQUESTS_TOPIC_NAME" value="analytic_exchange_to_dsp_requests" />
+      <env name="QUEUE_TOPIC_ANALYTIC_EXCHANGE_TO_SSP_RESPONSES_TOPIC_NAME" value="analytic_exchange_to_ssp_responses" />
+      <env name="QUEUE_TOPIC_ANALYTIC_SSP_BILLINGS_TOPIC_NAME" value="analytic_ssp_billings" />
+      <env name="QUEUE_TOPIC_ANALYTIC_SSP_TO_EXCHANGE_REQUESTS_TOPIC_NAME" value="analytic_ssp_to_exchange_requests" />
+      <env name="QUEUE_TOPIC_EVENT_EXCHANGE_BID_REQUESTS_TOPIC_NAME" value="event_exchange_bid_requests" />
+      <env name="QUEUE_TOPIC_EVENT_EXCHANGE_BID_RESPONSES_TOPIC_NAME" value="event_exchange_bid_responses" />
+      <env name="QUEUE_TOPIC_EVENT_SSP_BID_REQUESTS_TOPIC_NAME" value="event_ssp_bid_requests" />
+      <env name="QUEUE_TOPIC_OLD_ANALYTIC_DSP_WINS_TOPIC_NAME" value="old_analytic_dsp_wins" />
+      <env name="QUEUE_TOPIC_OLD_ANALYTIC_SSP_WINS_TOPIC_NAME" value="old_analytic_ssp_wins" />
+      <env name="REDIS_DATABASE" value="0" />
+      <env name="REDIS_HOST" value="localhost:6379" />
+      <env name="REDIS_PASSWORD" value="" />
+      <env name="REDIS_USER" value="" />
+      <env name="SERVICE_NAME" value="exchange" />
+    </envs>
+    <EXTENSION ID="net.ashald.envfile">
+      <option name="IS_ENABLED" value="true" />
+      <option name="IS_SUBST" value="false" />
+      <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
+      <option name="IS_IGNORE_MISSING_FILES" value="false" />
+      <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
+      <ENTRIES>
+        <ENTRY IS_ENABLED="true" PARSER="runconfig" IS_EXECUTABLE="false" />
+        <ENTRY IS_ENABLED="true" PARSER="env" IS_EXECUTABLE="false" PATH="exchange/.env" />
+      </ENTRIES>
+    </EXTENSION>
+    <kind value="PACKAGE" />
+    <package value="exchange/internal" />
+    <directory value="$PROJECT_DIR$" />
+    <filePath value="$PROJECT_DIR$" />
+    <method v="2" />
+  </configuration>
+</component>

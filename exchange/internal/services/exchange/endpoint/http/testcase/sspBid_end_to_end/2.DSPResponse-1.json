@@ -1,0 +1,50 @@
+{
+	"id": "7a88736adf0279785d753e4ad67a5295",
+	"seatbid": [
+		{
+			"bid": [
+				{
+					"id": "66cf23ee7011cb000191116b",
+					"impid": "1",
+					"price": 203.2,
+					"nurl": "https://events.adx.com.ru/event?price=${AUCTION_PRICE}&tracking=66cf23ee7011cb000191116b&type=win",
+					"burl": "",
+					"lurl": "",
+					"adm": "\n<!DOCTYPE html>\n<html>\n<head>\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, user-scalable=no\">\n\n    <style>\n        html, body {\n            border: 0 !important;\n            margin: 0 !important;\n            padding: 0 !important;\n            width: 100vw !important;\n            height: 100vh !important;\n            overflow: hidden !important;\n        }\n\n        #iframe-66cf23ee7011cb000191116b {\n            border: 0;\n            \n            \n                width: 100%;\n                height: 100%;\n            \n        }\n    </style>\n</head>\n<body>\n    \n\n    \n\n    \n\n    \n<script>\n    (() => {\n        const initMraid = (window) => {\n            try {\n                mraid;\n            } catch {\n                mraidConnect(window, false);\n                return;\n            }\n\n            if (mraid.getState() === 'loading') {\n                mraid.addEventListener('ready', () => {\n                    mraidConnect(window, true);\n                });\n            } else {\n                mraidConnect(window, true);\n            }\n        };\n\n        const makeOptions = () => ({\n            placementType: mraid.getPlacementType(),\n            expandProperties: mraid.getExpandProperties(),\n            orientationProperties: mraid.getOrientationProperties(),\n            resizeProperties: mraid.getResizeProperties(),\n            maxSize: mraid.getMaxSize(),\n            features: {\n                sms: mraid.supports('sms'),\n                tel: mraid.supports('tel'),\n                calendar: mraid.supports('calendar'),\n                storePicture: mraid.supports('storePicture'),\n                inlineVideo: mraid.supports('inlineVideo'),\n            },\n        });\n\n        const mraidConnect = (eventSource, proxy) => {\n            eventSource.postMessage({ event: 'init', data: proxy, options: proxy ? makeOptions() : undefined }, '*');\n\n            if (proxy) {\n                mraid.addEventListener('error', (message, action) => {\n                    eventSource.postMessage({ event: 'error', data: { message, action, options: makeOptions() } }, '*');\n                });\n\n                mraid.addEventListener('sizeChange', (width, height) => {\n                    eventSource.postMessage({ event: 'sizeChange', data: { width, height }, options: makeOptions() }, '*');\n                });\n\n                mraid.addEventListener('stateChange', (state) => {\n                    eventSource.postMessage({ event: 'stateChange', data: state, options: makeOptions() }, '*');\n                });\n\n                mraid.addEventListener('viewableChange', (viewable) => {\n                    eventSource.postMessage({ event: 'viewableChange', data: viewable, options: makeOptions() }, '*');\n                });\n            }\n        };\n\n        window.addEventListener('message', (event) => {\n            if (event.source !== window.frames.wrapper.frames.banner) {\n                return;\n            }\n\n            switch (event.data.event) {\n                case 'init':\n                    initMraid(event.source);\n                    break;\n                case 'open':\n                    mraid.open(event.data.data);\n                    break;\n                case 'close':\n                    mraid.close();\n                    break;\n                case 'setExpandProperties':\n                    mraid.setExpandProperties(event.data.data);\n                    break;\n                case 'setOrientationProperties':\n                    mraid.setOrientationProperties(event.data.data);\n                    break;\n                case 'setResizeProperties':\n                    mraid.setResizeProperties(event.data.data);\n                    break;\n                case 'useCustomClose':\n                    mraid.useCustomClose(event.data.data);\n                    break;\n                case 'storePicture':\n                    mraid.storePicture(event.data.data);\n                    break;\n                case 'createCalendarEvent':\n                    mraid.createCalendarEvent(event.data.data);\n                    break;\n                case 'playVideo':\n                    mraid.playVideo(event.data.data);\n                    break;\n            }\n        });\n    })()\n</script>\n\n    <script>\n    document.createElement('img').src = 'https://statistics.adx.com.ru/api/stream/device' +\n        `?dpr=${devicePixelRatio}` +\n        `&width=${screen.width}` +\n        `&height=${screen.height}`;\n</script>\n\n\n    <iframe name=\"wrapper\" id=\"iframe-66cf23ee7011cb000191116b\" scrolling=\"no\" marginwidth=\"0\" marginheight=\"0\" src=\"https://adx.com.ru/banner/66cf23ee7011cb000191116b/?clickMacro=&auctionPrice=${AUCTION_PRICE}\"></iframe>\n\n    <script>\n        const frameWrapper = document.querySelector('iframe[name=\"wrapper\"]');\n        if (frameWrapper.dataset.params !== undefined) {\n            fetch('https://adx.com.ru/banner/66cf23ee7011cb000191116b/').then(resp => resp.text()).then(text => {\n                frameWrapper.srcdoc = text;\n            });\n        }\n    </script>\n</body>\n</html>\n",
+					"adid": "",
+					"adomain": [
+						"vidimo.media"
+					],
+					"bundle": "",
+					"iurl": "https://cdn.adx.com.ru/banner/000000000000000000000000.png",
+					"cid": "66c7182ba897d80001520631",
+					"crid": "66cd9992a897d800015d8af7",
+					"tactic": "",
+					"cat": [
+						""
+					],
+					"attr": null,
+					"api": 0,
+					"protocol": 0,
+					"qagmediarating": 0,
+					"language": "",
+					"dealid": "",
+					"w": 320,
+					"h": 480,
+					"wratio": 0,
+					"hratio": 0,
+					"exp": 0,
+					"ext": {"$binary":{"base64":"eyJucm9hIjp7ImVyaWQiOiIiLCJjbGllbnQiOnsibmFtZSI6IiIsImlubiI6IjAifSwiY29udHJhY3RvciI6eyJuYW1lIjoiIiwiaW5uIjoiMCJ9LCJpbml0aWFsX2NvbnRyYWN0Ijp7ImlkIjoiIiwic2lnbl9kYXRlIjoiIiwibnVtYmVyIjoiIiwidHlwZSI6IiIsInN1YmplY3RfdHlwZSI6IiIsInZhdF9pbmNsdWRlZCI6ZmFsc2V9fX0=","subType":"00"}}
+				}
+			],
+			"seat": "",
+			"group": 0,
+			"ext": null
+		}
+	],
+	"bidid": "",
+	"cur": "RUB",
+	"customdata": "",
+	"nbr": 0,
+	"ext": null
+}

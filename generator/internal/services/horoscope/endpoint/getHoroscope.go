@@ -21,7 +21,7 @@ func (e *endpoint) getHoroscope(ctx context.Context, r *http.Request) (any, erro
 	var req model.GetHoroscopeReq
 
 	// Декодируем запрос
-	if err := decoder.Decoder(ctx, r, &req, decoder.DecodeSchema); err != nil {
+	if err := decoder.Decode(ctx, r, &req, decoder.DecodeSchema); err != nil {
 		return nil, err
 	}
 

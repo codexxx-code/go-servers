@@ -1,0 +1,43 @@
+{
+	"id": "50c3d53cc39690b5febd02db6b28b206",
+	"seatbid": [
+		{
+			"bid": [
+				{
+					"id": "66fff999d41e060001bc7b1e",
+					"impid": "1",
+					"price": 2.032520325203252,
+					"nurl": "https://bid.sspnet.tech/billing/requestID?id_type=bid&price=${AUCTION_PRICE}&url_type=nurl&bid_price=2.032520325203252",
+					"burl": "",
+					"lurl": "",
+					"adm": "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\n<ad><popunderAd><url><![CDATA[https://pwagames.ru/game/happy-bucket/play?adm_id=bid1,bid2,bid3,bid4&is_adult=true]]></url></popunderAd></ad>",
+					"adid": "",
+					"adomain": null,
+					"bundle": "",
+					"iurl": "",
+					"cid": "",
+					"crid": "",
+					"tactic": "",
+					"cat": null,
+					"attr": null,
+					"api": 0,
+					"protocol": 0,
+					"qagmediarating": 0,
+					"language": "",
+					"dealid": "",
+					"w": 0,
+					"h": 0,
+					"wratio": 0,
+					"hratio": 0,
+					"exp": 0
+				}
+			],
+			"seat": "",
+			"group": 0
+		}
+	],
+	"bidid": "bidder_id",
+	"cur": "USD",
+	"customdata": "",
+	"nbr": 0
+}

@@ -1,0 +1,19 @@
+name: test exchange deploy
+
+on:
+  push:
+    branches:
+    - release/*
+    - hotfix/*
+    paths:
+      - 'exchange/**'
+
+jobs:
+  general-deploy-pipeline:
+    uses: ./.github/workflows/reusable-deploy.yml
+    with:
+      service_port: 8085
+      service_name: exchange
+      test_suffix: -test
+      command_args: -log-format=text -env-mode=test
+    secrets: inherit

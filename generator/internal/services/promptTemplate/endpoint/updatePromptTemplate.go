@@ -22,7 +22,7 @@ func (e *endpoint) updatePromptTemplate(ctx context.Context, r *http.Request) (a
 	var req model.UpdatePromptTemplateReq
 
 	// Декодируем запрос
-	if err := decoder.Decoder(ctx, r, &req, decoder.DecodeJSON); err != nil {
+	if err := decoder.Decode(ctx, r, &req, decoder.DecodeJSON); err != nil {
 		return nil, err
 	}
 
