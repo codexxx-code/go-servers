@@ -29,6 +29,7 @@ func (r *HoroscopeRepository) GetHoroscope(ctx context.Context, req model.GetHor
 		Where(filters).
 		Where(sq.LtOrEq{horoscopeDDL.ColumnDateFrom: req.DateFrom}).
 		Where(sq.GtOrEq{horoscopeDDL.ColumnDateTo: req.DateFrom}).
+		OrderBy(ddlHelper.Desc(horoscopeDDL.ColumnID)).
 		Limit(1)
 
 	// Выполняем запрос

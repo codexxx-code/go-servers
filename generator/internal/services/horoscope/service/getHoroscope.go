@@ -12,6 +12,9 @@ import (
 
 func (s *HoroscopeService) GetHoroscope(ctx context.Context, req model.GetHoroscopeReq) (res model.Horoscope, err error) {
 
+	// Считаем начало и конец периода гороскопа
+	req.DateFrom, req.DateTo = utils.GetDateRangeForTimeframe(req)
+
 	// Получаем гороскоп из базы данных
 	horoscope, err := s.horoscopeRepository.GetHoroscope(ctx, req)
 
@@ -27,9 +30,6 @@ func (s *HoroscopeService) GetHoroscope(ctx context.Context, req model.GetHorosc
 		return res, err
 
 	}
-
-	// Считаем начало и конец периода гороскопа
-	req.DateFrom, req.DateTo = utils.GetDateRangeForTimeframe(req)
 
 	// Получаем промпт для генерации гороскопа
 	getPromptRes, err := s.getHoroscopePrompt(ctx, req)
