@@ -8,7 +8,48 @@ on:
         type: string
   pull_request:
 
+permissions:
+  contents: read
+  pull-requests: read
+
 jobs:
+  setup:
+    if: ${{ github.event_name != 'workflow_call' }}
+    name: prepare matrix
+    runs-on: ubuntu-latest
+    outputs:
+      dirs: ${{ steps.matrix.outputs.matrix }}
+    steps:
+      - id: paths
+        uses: dorny/paths-filter@v2
+        with:
+          list-files: 'shell'
+          filters: |
+            all:
+              - added|modified: '**'
+      - id: matrix
+        run: |
+          IN="${{ steps.paths.outputs.all_files }}"
+          read -ra array <<<"$IN"
+          dirs=()
+          for element in "${array[@]}"; do
+            if [[ "$element" =~ ^.*\.go$ ]]; then
+              IFS='/' read -ra file <<<"$element"
+              if [[ "${file[0]}" == "tochka" ]]; then
+                dirs+=("${file[0]}"/"${file[1]}")
+              else
+                dirs+=("${file[0]}")
+              fi
+            fi
+          done
+          read -ra dirs <<<"$(echo "${dirs[@]}" | tr ' ' '\n' | sort -u | tr '\n' ' ')"
+          output="["
+          for dir in "${dirs[@]}"; do
+            output+=\""$dir"\",
+          done
+          output=${output::-1}
+          output+=]
+          echo "matrix=$output" >> $GITHUB_OUTPUT
   testing:
     runs-on: ubuntu-latest
     steps:

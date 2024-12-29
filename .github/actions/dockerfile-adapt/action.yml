@@ -1,9 +1,12 @@
 name: "dockerfile-adapt"
-description: "Open macros for existed dockerfile in root project directory"
+description: "Adapt existed dockerfile in root project directory"
 inputs:
   project_name:
-    required: true
+    required: false
     description: "Project name"
+  service_port:
+    required: false
+    description: "Port which service will be listening on"
   test_suffix:
     required: false
     description: "Suffix for .env file"
@@ -15,11 +18,12 @@ runs:
       run: |
         sed \
           -e "s|@{project_name}|${{ inputs.project_name }}|g" \
+          -e "s|@{service_port}|${{ inputs.service_port }}|g" \
           -e "s|@{build_number}|${{ github.run_id }}|g" \
           -e "s|@{test_suffix}|${{ inputs.test_suffix }}|g" \
           -e "s|@{commit_hash}|${{ github.sha }}|g" \
           -e "s|@{version_number}|${GITHUB_REF##*/}|g" \
-          < "Dockerfile" \
+          < "./.github/actions/dockerfile-build/Dockerfile-template" \
           > "Dockerfile"
 
     - name: Upload Dockerfile to artifacts

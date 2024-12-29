@@ -415,4 +415,5 @@ func createKafkaTopics(conf *config.Config) error {
 		return errors.InternalServer.Wrap(err)
 	}
 	return nil
+	
 }

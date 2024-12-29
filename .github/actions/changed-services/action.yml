@@ -1,0 +1,63 @@
+name: "Changed services"
+description: "Changed services in pull requests"
+outputs:
+  services:
+    description: services
+    value: ${{ steps.matrix.outputs.services }}
+  twin-loader-used:
+    description: "Flag of using twin-loader to activate TABLE_SUFFIX in dev-deploy. Possible values: 1 or null"
+    value: ${{ steps.matrix.outputs.twin_loader_used }}
+runs:
+  using: "composite"
+  steps:
+    - id: paths
+      uses: dorny/paths-filter@v2
+      with:
+        list-files: 'shell'
+        filters: |
+          all:
+            - added|modified: '**'
+    - id: matrix
+      shell: bash
+      run: |
+        declare -A services=(
+          [customer_area]=customer-area
+          [partner_products]=partner-products
+          [proposal_pdf]=proposals
+          [twin]=twin
+          [twin_loader]=twin-loader
+          [scifinder]=scifinder
+          [sales_bot]=sales_bot
+          [analogue]=analogue
+          [expired_bot]=expired_bot
+          [currencies]=currencies
+        )
+        IN="${{ steps.paths.outputs.all_files }}"
+        read -ra array <<<"$IN"
+        dirs=()
+        for element in "${array[@]}"; do
+          if [[ "$element" =~ ^.*\.go$ ]]; then
+            IFS='/' read -ra file <<<"$element"
+            if [[ "${file[0]}" == "tochka" ]]; then
+              dirs+=("${file[0]}"/"${file[1]}")
+            else
+              dirs+=("${file[0]}")
+            fi
+          fi
+        done
+        read -ra dirs <<<"$(echo "${dirs[@]}" | tr ' ' '\n' | sort -u | tr '\n' ' ')"
+        output="["
+        order=1
+        for dir in "${dirs[@]}"; do
+          if [[ -v services["$dir"] ]]; then
+            output+=\{\"order\":"$order",\"dir\":\""$dir"\"\,\"service\":\""${services[$dir]}"\"},
+            order=$((order+1))
+            if [[ "${services[$dir]}" == "twin-loader" ]]; then
+              echo "twin_loader_used=1" >> $GITHUB_OUTPUT
+              echo "twin_loader service found, twin specific tables will be created for this PR"
+            fi
+          fi
+        done
+        output=${output::-1}
+        output+=]
+        echo "services=$output" >> $GITHUB_OUTPUT

@@ -28,7 +28,8 @@ jobs:
 
         # Проверяем код линтером
       - name: golangci-lint
-        uses: golangci/golangci-lint-action@v4
+        uses: golangci/golangci-lint-action@v6
         with:
+          skip-cache: true
           working-directory: ${{ inputs.service_name }}
           version: latest

@@ -5,7 +5,6 @@ go 1.23.3
 replace pkg => ../pkg
 
 require (
-	git.yabbi.me/ssp/api-ssp-server-go v1.4.4
 	github.com/Masterminds/squirrel v1.5.4
 	github.com/Shopify/sarama v1.38.1
 	github.com/caarlos0/env/v11 v11.3.1
